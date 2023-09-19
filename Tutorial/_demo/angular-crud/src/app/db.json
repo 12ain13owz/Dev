@@ -1,0 +1,54 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "firstname": "test",
+      "lastname": "test",
+      "email": "est",
+      "mobile": "test",
+      "salary": "est"
+    },
+    {
+      "id": 2,
+      "firstname": "Manop",
+      "lastname": "Gesee",
+      "email": "manop@gmail.com",
+      "mobile": "0998913647",
+      "salary": "50000"
+    },
+    {
+      "id": 3,
+      "firstname": "Song",
+      "lastname": "Karn",
+      "email": "b@gmail.com",
+      "mobile": "0698547125",
+      "salary": "20000"
+    },
+    {
+      "id": 5,
+      "firstname": "First Test",
+      "lastname": "Last Test",
+      "email": "test@gmail.com",
+      "mobile": "0995871254",
+      "salary": "90900"
+    },
+    {
+      "id": 6,
+      "firstname": "T",
+      "lastname": "T",
+      "email": "t@hotmail.com",
+      "mobile": "1234567891",
+      "salary": "12345"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

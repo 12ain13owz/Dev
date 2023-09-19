@@ -1,0 +1,3 @@
+fly.io
+cyclic.sh
+vercel

@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>
+    iCoffee
+  </title>
+</head>
+
+<body>
+  <input>
+  <button onclick="cal()">OK</button>
+  <ul>
+  </ul>
+
+  <script src="jquery.js"></script>
+  <script>
+
+    $(document).keydown((event) => {
+      if (event.keyCode == 123)  // Prevent F12
+        return false;
+      else if (event.ctrlKey && event.shiftKey && event.keyCode == 73)  // Prevent Ctrl+Shift+I        
+        return false;
+    });
+
+    $(document).on("contextmenu", function (e) {
+      e.preventDefault();
+    });
+
+
+    function cal() {
+      $('ul').empty()
+
+      var n = $('input').val()
+      var i = 1
+      /*
+      while (i <= n) {
+          var x = n % i
+
+          if (x == 0) $('ul').append('<li>' + i + '</li>')
+
+          i = i + 1
+      }
+      */
+
+      for (l of n) {
+        var k = l % i
+
+        $('ul').append('<li>' + k + '</li>')
+      }
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,175 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+:root {
+  --body-font: "Poppins", sans-serif;
+  --biggest-font-size: 2rem;
+  --h1-font-size: 1.75rem;
+  --h2-font-size: 1.5rem;
+  --h3-font-size: 1.25rem;
+  --normal-font-size: 1.125rem;
+  --small-font-size: 1rem;
+  --smaller-font-size: 0.75rem;
+  --tiny-font-size: 0.625rem;
+
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+
+  --body-color: #f2f2f2;
+  --white-color: #ffffff;
+  --blue-color: #4070f4;
+  --dark-blue-color: #0e4bf1;
+  --gray-color: #666666;
+  --black-color: #333333;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--body-font);
+}
+
+.container {
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--body-color);
+  overflow: hidden;
+}
+
+.toast {
+  position: fixed;
+  padding: 1.25rem 2.25rem 1.25rem 1.75rem;
+  background-color: var(--body-color);
+  box-shadow: 0 0.25rem 0.4rem rgba(0, 0, 0, 0.1);
+  border-left: 6px solid var(--blue-color);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  visibility: hidden;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
+  z-index: 100;
+}
+
+.toast.top-right {
+  top: 1.75rem;
+  right: 2rem;
+  transform: translateX(calc(100% + 2rem));
+}
+
+.toast.top-left {
+  top: 1.75rem;
+  left: 2rem;
+  transform: translateX(calc(-100% - 2rem));
+}
+
+.toast.bottom-right {
+  bottom: 1.75rem;
+  right: 2rem;
+  transform: translateX(calc(100% + 2rem));
+}
+
+.toast.bottom-left {
+  bottom: 1.75rem;
+  left: 2rem;
+  transform: translateX(calc(-100% - 2rem));
+}
+
+.toast.active {
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.toast .toast-content {
+  display: flex;
+  align-items: center;
+}
+
+.toast-content .check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.25rem;
+  width: 2.25rem;
+  font-size: var(--h3-font-size);
+  color: var(--white-color);
+  background-color: var(--blue-color);
+  border-radius: 50%;
+}
+
+.toast-content .message {
+  display: flex;
+  flex-direction: column;
+  margin: 0 1.25rem;
+}
+
+.message .text {
+  font-size: var(--normal-font-size);
+  font-weight: var(--font-semibold);
+  color: var(--gray-color);
+}
+
+.message .text.text-1 {
+  font-weight: var(--font-semibold);
+  color: var(--black-color);
+}
+
+.toast .close {
+  position: absolute;
+  top: 0.75rem;
+  right: 1rem;
+  padding: 0.425rem;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: 0.3s;
+}
+
+.toast .close:hover {
+  opacity: 1;
+}
+
+button {
+  padding: 0.75rem 1.5rem;
+  font-size: var(--h3-font-size);
+  outline: none;
+  border: none;
+  background: var(--blue-color);
+  color: var(--white-color);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.toast .progress {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 4px;
+  width: 100%;
+  background-color: #ddd;
+}
+
+.toast .progress:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  background-color: var(--blue-color);
+}
+
+.progress.active:before {
+  animation: progress 5s linear forwards;
+}
+
+@keyframes progress {
+  100% {
+    right: 100%;
+  }
+}
+
+button:hover {
+  background-color: var(--dark-blue-color);
+}

@@ -1,0 +1,6 @@
+SELECT ROW_NUMBER() OVER(ORDER BY c.CourseName, s.StudentId) AS no,
+s.StudentId, s.StudentName, CONCAT(c.CourseId, ' - ', c.CourseName), IFNULL(g.Grade, '-')
+FROM student s 
+INNER JOIN course c 
+LEFT JOIN studentgrade g ON s.StudentId = g.StudentId AND c.CourseId = g.CourseId
+ORDER BY c.CourseName, s.StudentId;

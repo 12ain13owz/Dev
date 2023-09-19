@@ -1,0 +1,180 @@
+<div class="grid-container">
+  <mat-card>
+    <mat-card-title class="text-gray">เพิ่มบัญชีผู้ใช้งาน</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div fxLayout="column" fxLayoutGap="10">
+          <mat-form-field>
+            <mat-label>Username</mat-label>
+            <input
+              matInput
+              type="text"
+              formControlName="username"
+              #inputUsername
+            />
+            <mat-error
+              >เฉพาะตัวอักษร (a-z), ตัวเลข, และความยาว (4-15)</mat-error
+            >
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="password" />
+            <mat-error
+              >ตัวอักษรตัวเล็ก (a-z), ตัวใหญ่ (A-Z), ตัวเลข (0-9), ตัวพิเศษ (@,
+              #), และความยาวไม่ตำกว่า 6 ตัวอักษร
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Confirm Password</mat-label>
+            <input matInput type="password" formControlName="cpassword" />
+            <mat-error>รหัสผ่านไม่ตรงกัน </mat-error>
+          </mat-form-field>
+
+          <div
+            fxLayout="row"
+            fxLayout.lt-sm="column"
+            fxLayoutGap="10"
+            fxLayoutGap.lt-sm="0"
+          >
+            <mat-form-field fxFlex>
+              <mat-label>ชื่อ</mat-label>
+              <input matInput type="text" formControlName="firstname" />
+            </mat-form-field>
+
+            <mat-form-field fxFlex>
+              <mat-label>นามสกุล</mat-label>
+              <input matInput type="text" formControlName="lastname" />
+            </mat-form-field>
+          </div>
+
+          <label class="text-gray">สิทธิ</label>
+          <mat-radio-group formControlName="role" class="mb-20">
+            <mat-radio-button [value]="1">User</mat-radio-button>
+            <mat-radio-button [value]="0">Admin</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <button mat-raised-button color="primary" [disabled]="isButton">
+          Submit
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="overflow-x">
+    <mat-card-title class="mb-20 text-gray"
+      >รายการบัญชีผู้ใช้งาน</mat-card-title
+    >
+    <mat-card-content>
+      <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" />
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+
+      <table mat-table matSort [dataSource]="dataSource">
+        <ng-container matColumnDef="username">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Username</th>
+          <td mat-cell *matCellDef="let row">
+            <div *ngIf="row.id">{{ row.username }}</div>
+            <div *ngIf="!row.id">
+              <ngx-skeleton-loader
+                appearance="line"
+                [theme]="{
+                  display: 'flex',
+                  width: '90%',
+                  margin: '0'
+                }"
+              ></ngx-skeleton-loader>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="fullname">
+          <th mat-header-cell *matHeaderCellDef>ชื่อ-สกุล</th>
+          <td mat-cell *matCellDef="let row">
+            <div *ngIf="row.id">{{ row.firstname }} {{ row.lastname }}</div>
+            <div *ngIf="!row.id">
+              <ngx-skeleton-loader
+                appearance="line"
+                [theme]="{
+                  display: 'flex',
+                  width: '90%',
+                  margin: '0'
+                }"
+              ></ngx-skeleton-loader>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="role">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header width="10%">
+            สิทธิ
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <div *ngIf="row.id">{{ row.role | role }}</div>
+            <div *ngIf="!row.id">
+              <ngx-skeleton-loader
+                appearance="line"
+                [theme]="{
+                  display: 'flex',
+                  width: '90%',
+                  margin: '0'
+                }"
+              ></ngx-skeleton-loader>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="active">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header width="10%">
+            สถานะ
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <div
+              *ngIf="row.id"
+              class="flex text-red"
+              [ngClass]="row.active ? 'text-green' : ''"
+            >
+              <mat-icon *ngIf="row.active">toggle_on</mat-icon>
+              <mat-icon *ngIf="!row.active">toggle_off</mat-icon>
+            </div>
+            <div *ngIf="!row.id">
+              <ngx-skeleton-loader
+                appearance="circle"
+                [theme]="{ display: 'flex' }"
+              ></ngx-skeleton-loader>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="edit">
+          <th mat-header-cell *matHeaderCellDef width="10%">แก้ไข</th>
+          <td mat-cell *matCellDef="let row">
+            <div *ngIf="row.id">
+              <button mat-icon-button color="primary" (click)="openDialog(row)">
+                <mat-icon>edit</mat-icon>
+              </button>
+            </div>
+            <div *ngIf="!row.id">
+              <ngx-skeleton-loader
+                appearance="circle"
+                [theme]="{ display: 'flex' }"
+              ></ngx-skeleton-loader>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+      <mat-paginator
+        [pageSize]="20"
+        [pageSizeOptions]="[20, 50, 75, 100]"
+        aria-label="Select page of users"
+      ></mat-paginator>
+    </mat-card-content>
+  </mat-card>
+</div>

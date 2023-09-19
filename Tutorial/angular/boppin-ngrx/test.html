@@ -1,0 +1,7 @@
+<script>
+  const url = "https://pokeapi.co/api/v2/pokemon?limit=20&offset=20";
+
+  fetch(url)
+    .then((data) => data.json())
+    .then((value) => console.log(value));
+</script>

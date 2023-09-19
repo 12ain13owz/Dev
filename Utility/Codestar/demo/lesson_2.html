@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Demo</title>
+</head>
+
+<body>
+    <button onclick="start()">Start</button>
+    <button onclick="user()">Name</button>
+    <script>
+        function start() {
+            // start() caller / ผู้เรียก
+            // trimax() callee / ผู้ถูกเรียก
+            var m = trimax(11, 10, 9)
+            alert(m)
+        }
+
+        function max(a, b) {
+            if (a > b) return a
+            else return b
+        }
+
+
+        function trimax(a, b, c) {
+            var w = max(a, b)
+            var v = max(w, c)
+            return v
+
+            /*
+            var x = max(a, b)
+            if (x > c) return x
+            else return c
+            */
+
+            /*
+            if (a > b) {
+                if (a > c) return a
+                else return c
+            } else {
+                if (b > c) return b
+                else return c
+            }
+            */
+        }
+
+        // caller กับ callee เป็น ตัวเดียวกันเรียก recursion
+        function convert(d) {
+            if (d < 2) return d
+            if (d % 2 == 0) return 10 * convert(d / 2)
+            if (d % 2 == 1) return 10 * convert((d - 1) / 2) + 1
+        }
+
+        function user() {
+            var name = prompt('Enter your name')
+            if (name == 'Bill Gates') alert('Please give me $1000 ')
+            else alert('Hello : ' + name)
+        }
+    </script>
+</body>
+
+</html>

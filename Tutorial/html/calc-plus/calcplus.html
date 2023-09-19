@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <input id="no1" />
+    <br />
+    <input id="no2" />
+    <br />
+    <button onclick="total()">OK</button>
+    <br />
+    result :
+    <span></span>
+  </body>
+</html>
+
+<script>
+  let el = document.querySelectorAll("input");
+  for (item of el) {
+    item.addEventListener("keyup", (e) => {
+      if (e.keyCode == 13) total();
+    });
+  }
+
+  const total = () => {
+    let no1 = document.querySelector("#no1").value.toString(),
+      no2 = document.querySelector("#no2").value.toString(),
+      result = {
+        sum: "",
+        carry: 0,
+      };
+
+    if (no1.length == 0 || no2.length == 0) return;
+    else if (no1.length >= no2.length) {
+      result.minuend = no1;
+      result.addend = no2;
+    } else {
+      result.minuend = no2;
+      result.addend = no1;
+    }
+
+    for (let i = 0; i < result.minuend.length; i++) {
+      let min = result.minuend.substring(
+        result.minuend.length - 1 - i,
+        result.minuend.length - i
+      );
+      let add = result.addend.substring(
+        result.addend.length - 1 - i,
+        result.addend.length - i
+      );
+      let sum = String(Number(min) + result.carry + Number(add));
+
+      if (sum.length > 1) {
+        result.carry = Number(sum.substring(0, 1));
+        sum = sum.substring(1, sum.length);
+      } else result.carry = 0;
+
+      result.sum = sum + result.sum;
+    }
+
+    if (result.carry != 0) result.sum = String(result.carry) + result.sum;
+
+    for (item of result.sum) {
+      if (item == "0") {
+        result.sum = result.sum.substring(1, result.sum.length);
+      } else break;
+    }
+
+    document.querySelector("span").innerText = result.sum;
+  };
+</script>

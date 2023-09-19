@@ -1,0 +1,28 @@
+<div class="box">
+  <div>
+    <mat-form-field>
+      <mat-label>Select price</mat-label>
+      <mat-select
+        [(ngModel)]="selectedValue"
+        name="item"
+        (closed)="clearTxt()"
+        (opened)="onOpen()"
+      >
+        <div class="search">
+          <input
+            [(ngModel)]="searchTxt"
+            matInput
+            #inputSearch
+            placeholder="search"
+          />
+        </div>
+
+        <mat-option
+          *ngFor="let item of items | search: searchTxt"
+          [value]="item.name"
+          >{{ item.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>

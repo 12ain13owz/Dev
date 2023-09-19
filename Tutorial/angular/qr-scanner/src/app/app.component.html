@@ -1,0 +1,28 @@
+<div class="container">
+  <mat-card>
+    <h2>Scanner</h2>
+    <mat-card-content>
+      <div fxLayout="column">
+        <div style="max-width: 400px">
+          <zxing-scanner
+            #scanner
+            [formats]="allowedFormats"
+            [enable]="isCamera"
+            (scanSuccess)="scanSuccess($event)"
+          ></zxing-scanner>
+        </div>
+        <mat-form-field fxFlex>
+          <input matInput placeholder="Result" [(ngModel)]="resultCamera" />
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="startCamera()">
+        Start
+      </button>
+      <button mat-raised-button color="primary" (click)="stopCamera()">
+        Stop
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

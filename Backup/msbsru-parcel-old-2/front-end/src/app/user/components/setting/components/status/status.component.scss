@@ -1,0 +1,13 @@
+::ng-deep .mat-dialog-container {
+  position: relative !important;
+}
+
+.mat-progress-bar {
+  position: absolute !important;
+  left: 0;
+  top: 0;
+}
+
+.mat-tab-body-content {
+  overflow: hidden !important;
+}

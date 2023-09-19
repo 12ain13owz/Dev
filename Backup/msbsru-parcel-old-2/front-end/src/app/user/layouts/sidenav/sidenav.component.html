@@ -1,0 +1,78 @@
+<mat-toolbar>
+  <img class="logo" src="assets/images/logo-ms-bsru.png" alt="logo-ms-bsru" />
+</mat-toolbar>
+<mat-divider></mat-divider>
+<mat-nav-list>
+  <h2 matSubheader>รายการ</h2>
+  <a mat-list-item [routerLink]="['scan']" [routerLinkActive]="['active']"
+    ><mat-icon matListIcon>qr_code</mat-icon>
+    <div mat-line>สแกน</div></a
+  >
+
+  <a mat-list-item [routerLink]="['item']" [routerLinkActive]="['active']"
+    ><mat-icon matListIcon>wysiwyg</mat-icon>
+    <div mat-line>อุปกรณ์</div>
+  </a>
+
+  <a mat-list-item [routerLink]="['search']" [routerLinkActive]="['active']"
+    ><mat-icon matListIcon>search</mat-icon>
+    <div mat-line>ค้นหา</div>
+  </a>
+
+  <a mat-list-item [routerLink]="['log']" [routerLinkActive]="['active']"
+    ><mat-icon matListIcon>view_timeline</mat-icon>
+    <div mat-line>ประวัติ</div>
+  </a>
+
+  <mat-accordion>
+    <mat-expansion-panel
+      *ngIf="role === 0"
+      [class.mat-elevation-z0]="true"
+      [expanded]="isExpanded[0].status"
+    >
+      <mat-expansion-panel-header class="pd-l-0">
+        <div
+          class="expansion-header"
+          fxLayout="row"
+          fxLayoutAlign="start center"
+          fxLayoutGap="24px"
+        >
+          <mat-icon>settings</mat-icon>
+          <span>ตั้งค่า</span>
+        </div>
+      </mat-expansion-panel-header>
+
+      <mat-nav-list class="pd-t-0">
+        <a
+          class="sub-menu"
+          mat-list-item
+          [routerLink]="['setting/account']"
+          [routerLinkActive]="['active']"
+        >
+          <mat-icon mat-list-icon>manage_accounts</mat-icon>
+          <div mat-line>บัญชีผู้ใช้งาน</div>
+        </a>
+
+        <a
+          class="sub-menu"
+          mat-list-item
+          [routerLink]="['setting/category']"
+          [routerLinkActive]="['active']"
+        >
+          <mat-icon matListIcon>list_alt</mat-icon>
+          <div mat-line>ประเภทอุปกรณ์</div>
+        </a>
+
+        <a
+          class="sub-menu"
+          mat-list-item
+          [routerLink]="['setting/status']"
+          [routerLinkActive]="['active']"
+        >
+          <mat-icon matListIcon>dataset</mat-icon>
+          <div mat-line>สถานะอุปกรณ์</div>
+        </a>
+      </mat-nav-list>
+    </mat-expansion-panel>
+  </mat-accordion>
+</mat-nav-list>

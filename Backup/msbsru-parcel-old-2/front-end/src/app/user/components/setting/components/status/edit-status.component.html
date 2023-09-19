@@ -1,0 +1,38 @@
+<mat-progress-bar *ngIf="isProgressbar" mode="indeterminate"></mat-progress-bar>
+<h2 mat-dialog-title class="mat-typography">แก้ไข สถานะอุปกรณ์</h2>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
+    <div fxLayout="column" fxLayoutGap="10">
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15">
+        <mat-form-field>
+          <mat-label>สถานะอุปกรณ์</mat-label>
+          <input matInput type="text" formControlName="name" #inputName />
+          <mat-error>ป้อน สถานะอุปกรณ์</mat-error>
+        </mat-form-field>
+        <mat-checkbox
+          [(ngModel)]="isCheck"
+          [ngModelOptions]="{ standalone: true }"
+          (change)="isNameActive(isCheck)"
+          >แก้ไขสถานะ</mat-checkbox
+        >
+      </div>
+
+      <mat-form-field>
+        <mat-label>หมายเหตุ</mat-label>
+        <input matInput type="text" formControlName="remark" />
+      </mat-form-field>
+
+      <div class="mb-15">
+        <mat-slide-toggle formControlName="active">ใช้งาน</mat-slide-toggle>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-raised-button color="primary" [disabled]="isButton">
+      Submit
+    </button>
+    <button mat-raised-button type="button" color="warn" (click)="onReset()">
+      Reset
+    </button>
+  </mat-dialog-actions>
+</form>

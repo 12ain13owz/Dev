@@ -1,0 +1,139 @@
+1. cal = carlendar /* ???? carlendar */
+2. pwd = print working directory /* ???? directory ???????? */
+3. mkdir company /* ????? Folder ???? company */
+4. ls /* ???? folder */
+5. touch user.txt /* ????? file user.txt */
+6. sudo apt update & sudo apt install /* ???????? root tree ????????? ??????  */
+7. tree /* ???? root tree */
+8. cp data.txt to test /* copy data.txt ????? folder test */
+9. cat (concatenste) show ?????????? ??????????????????
+
+program vi ??????? text-editor ?? ubuntu
+vi test.txt > command 
+i insert ?????? Esc ??? :w savefile :q Quit
+
+sudo vi /var/www/html/index.html dir ????
+http://35.197.151.229/index.html
+
+?????? ubunbu ????????? https://devahoy.com/posts/basic-command-line-ubuntu/
+
+http://s-macke.github.io/jor1k/demos/main.html?user=PfuJU8ij5c&cpu=asm&n=1&relayURL=wss%3A%2F%2Frelay.widgetry.org%2F
+
+sort ใช้เรีนข้อมูล
+ctrl + d ออกจาก sort
+
+echo < shot desptop 
+> input สร้างไฟล์ทับ
+>> ต่อจากข้อมูลเดิม
+
+grep ใช้ search คำเฉพาะที่ต้องการหา
+
+sudo apt install mysql-server ลง mysql
+service mysql status เช็ค status mysql
+sudo apt install apache2 
+service apache2 status 
+sudo service apache2 stop ปิด service apache2
+
+ใส่ sudo เพิ่อไม่ต้องใส่หัสผ่าน
+
+ใช้ mysql sudo mysql
+DBMS database Management System เช่น mysql / oracle / SQL Server / PostgreSQL
+คำสั่ง แก้ไข DB
+show databses;
+create database ibook;
+use ibook; เรียกใช้  table ใน db
+
+https://saixiii.com/sql-command/
+
+in , function
+transaction, backup, view
+
+start transaction;
+
+create view tbname as select * from choosetable where condition
+select * from tbname;
+
+show tables แสดง table
+exit ออกจาก mysql
+
+sudo mysqldump dbname > file.txt ไฟล์ sql สำหรับ import 
+
+system ใช้คำสั่ง linux ระหว่าง use mysql  เช่น system cal เรียกใช้ carlendar
+
+ตัวอย่าง import file.sql
+create database backup;
+use backup;
+source backup.sql;
+
+
+variable = varry able = พื้นที่ในหน่วยความจำ
+
+sudo apt update
+sudo apt install npm(Node Packge Manager)
+sudo npm install n -g
+sudo npm latest (version ล่าสุด)
+sudo npm stable (Version มาตราฐาน)
+
+sudo = super user do
+apt = advance packgeting
+
+1.var 2.function 3.if 4.while 
+(Structured program theorem)
+1.Sequese
+2.condition
+3.iteration
+
+alt + 96 = `
+
+sudo mysql // use mysql
+create database icoffee // สร้างดาต้าเบสชื่อ icoffee
+create user james idenitified by 'bond' // สร้าง user james passowrd bond สำหรับเข้า database 
+mysql -u james -p or mysql --user james --passoword // login database ด้วย user 
+
+node web.js & \\ สร้าง port
+ps aux | grep node \\ แสดงข้อมูล port
+
+sudo apt install nginx \\ ลง service
+
+sudo vi /etc/nginx/sites-available/default // ให้ nginx มองหา port ของ nodejs 
+exam. location / {
+	proxy_pass http://127.0.0.1:3000/;
+	proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+} 
+หลัง Set nginx ให้ restart nginx ด้วยคำสั่ง sudo service nginx restart
+
+15/05/2018
+Create Ubunto Server 18.04
+sudo apt update
+sudo apt install mysql-server
+sudo mysql
+create database web default charset 'UTF8';
+create user james identified by 'bond';
+grant all on web.* to james;
+exit;
+
+mysql --user james --password
+show databases;
+use web;
+create table member (
+  id serial, -- bigint auto_increment unique,
+  email varchar(80) unique,
+  password varchar(128),
+  firstname varchar(80),
+  familyname varchar(80)
+);
+
+insert into member(email, password, firstname, familyname)
+values('jaes@bond.com', sha2('james123', 512), 'James', 'Bond');
+
+exit;
+
+sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf
+# bind-address = 127.0.0.1
+sudo service mysql restart
+
+// สร้าง firewall rules port mysql 3306

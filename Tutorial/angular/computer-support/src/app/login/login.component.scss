@@ -1,0 +1,80 @@
+.container-login {
+  position: absolute;
+  width: 300px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.box-title {
+  position: relative;
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: -30px;
+  padding: 10px;
+  border-radius: 8px;
+  background: linear-gradient(120deg, #7fe7eb, #1a6ca1);
+  z-index: 5;
+
+  h1 {
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+  }
+}
+
+.box {
+  position: relative;
+  padding: 40px;
+  background: rgba(#000, 0.2);
+  border-radius: 8px;
+  z-index: 1;
+
+  h2 {
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+}
+
+.box-input {
+  display: block;
+  margin: 20px auto;
+  padding: 14px 10px;
+  width: 160px;
+  background: none;
+  border: 3px solid #f3bd3b;
+  border-radius: 24px;
+  text-align: center;
+  outline: none;
+  color: #fff;
+  transition: 0.25s;
+}
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #ddd;
+  opacity: 1; /* Firefox */
+}
+
+.box-input:focus {
+  width: 200px;
+  border-color: #f4a261;
+}
+
+.box-button {
+  display: block;
+  margin: 20px auto;
+  padding: 14px 40px;
+  background: none;
+  border: 3px solid #12e9cf;
+  border-radius: 24px;
+  text-align: center;
+  outline: none;
+  color: #fff;
+  transition: 0.25s;
+  cursor: pointer;
+}

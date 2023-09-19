@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>EJS</title>
+</head>
+
+<body>
+    <%
+        var user = 'Mark Zuckerberg'
+        var data = ['Latte', 'Mocha', 'Americano']
+    %>
+
+        <p>Hello
+            <%= user %>
+        </p>
+        <select>
+            <option><%= data[0] %></option>
+            <option><%= data[1] %></option>
+            <option><%= data[2] %></option>
+        </select>
+        <select>
+            <% for (var i of data) { %>
+                    <option><%= i %></option>                
+            <% } %>
+        </select>
+
+        <% var city = [
+            {name: 'Bang Rak', code: 10500},
+            {name: 'Dusit', code: 10300},
+            {name: 'Bang Plad', code: 10400},
+        ]
+        for (i of city) { %>
+            <button type="button"><%= i.name + ' / ' + i.code %></button>
+            <% } %>
+</body>
+
+</html>

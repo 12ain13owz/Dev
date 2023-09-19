@@ -1,0 +1,33 @@
+<div class="container">
+  <p-card>
+    <h3>รายงาน</h3>
+    <div class="p-fluid">
+      <div class="p-field">
+        <label>วันที่เริ่ม<span style="color: red">*</span></label>
+        <p-calendar [(ngModel)]="value"></p-calendar>
+      </div>
+
+      <div class="p-field">
+        <label>วันที่สิ้นสุด<span style="color: red">*</span></label>
+        <p-calendar [(ngModel)]="value"></p-calendar>
+      </div>
+
+      <div class="p-field">
+        <label>สถานะ<span style="color: red">*</span></label>
+        <select pInputText>
+          <option selected>Choose</option>
+          <option value="1">ทั้งหมด</option>
+          <option value="2">New</option>
+          <option value="3">Waiting</option>
+          <option value="4">Close</option>
+        </select>
+      </div>
+    </div>
+
+    <div style="text-align: center">
+      <button pButton pRipple class="p-button-info" type="button">
+        Export
+      </button>
+    </div>
+  </p-card>
+</div>

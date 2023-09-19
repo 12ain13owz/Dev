@@ -1,0 +1,21 @@
+<mat-drawer-container class="bg-container">
+  <mat-drawer
+    #sidenav
+    fixedInViewport="true"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="!(isHandset$ | async)"
+    class="bg-container"
+  >
+    <app-sidenav (click)="onCloseSidenNav()"></app-sidenav>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <header>
+      <app-toolbar (sidenavToggle)="sidenav.toggle()"></app-toolbar>
+    </header>
+
+    <main class="container">
+      <router-outlet></router-outlet>
+    </main>
+  </mat-drawer-content>
+</mat-drawer-container>

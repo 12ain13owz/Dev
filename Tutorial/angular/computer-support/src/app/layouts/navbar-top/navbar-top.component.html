@@ -1,0 +1,23 @@
+<p-menubar [model]="items" *ngIf="navs.visible">
+  <span class="title">
+    {{ mockData.UserID }}, {{ mockData.UserName }} {{ mockData.UserSurName }}
+  </span>
+  <button class="btn-icon" (click)="onLog()">
+    <i
+      *ngIf="!value"
+      class="pi pi-bell p-mr-1 p-danger"
+      style="font-size: 18px"
+    ></i>
+  </button>
+
+  <button class="btn-icon" (click)="onLog()">
+    <i
+      *ngIf="value"
+      class="pi pi-bell p-mr-1 p-danger"
+      pBadge
+      style="font-size: 18px"
+      value="1"
+      severity="danger"
+    ></i>
+  </button>
+</p-menubar>

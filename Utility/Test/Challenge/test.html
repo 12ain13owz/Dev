@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <input type="number" id="txt1" />
+    </div>
+    <div>
+      <label for="txt2"></label>
+      <input type="text" id="txt2" disabled />
+    </div>
+  </body>
+</html>
+
+<script>
+  const txt1 = document.querySelector("#txt1");
+  const txt2 = document.querySelector("#txt2");
+  const label = document.querySelector("label[for='txt2']");
+
+  txt1.addEventListener("input", (event) => {
+    let length = txt1.value.length;
+
+    if (length > 0) txt2.disabled = false;
+    else {
+      txt2.disabled = true;
+      label.textContent = "";
+    }
+  });
+
+  txt2.addEventListener("input", (event) => {
+    label.textContent = txt2.value;
+  });
+</script>

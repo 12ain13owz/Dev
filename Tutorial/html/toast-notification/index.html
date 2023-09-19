@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Toast Notification with Progress Bar</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="toast.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+      }
+
+      .container {
+        height: 100dvh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f2f2f2;
+        overflow: hidden;
+      }
+
+      button {
+        padding: 0.75rem 1.5rem;
+        font-size: 1.25rem;
+        outline: none;
+        border: none;
+        background: #4070f4;
+        color: #fff;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        background-color: #0e4bf1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <button type="button">Show Toast</button>
+    </div>
+  </body>
+</html>
+
+<script src="toast.js"></script>
+<script>
+  const config = {
+    horizontal: "right",
+    vertical: "bottom",
+    duration: 3000,
+  };
+  const toast = new Toast(config);
+
+  const btn = document.querySelector("button");
+  btn.addEventListener("click", () => {
+    toast.showToast("info", "Data infomation");
+  });
+
+  document.addEventListener("keypress", (event) => {
+    if (event.key === "Enter") btn.click();
+  });
+</script>

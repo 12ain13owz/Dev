@@ -1,0 +1,38 @@
+<div></div>
+<script>
+    let arr = [1, 1, 2, 2, 3, 3, 4, 4, 5, 9, 9, 10, 10]
+    let ar = [9, 3, 9, 3, 9, 7, 9]
+    let dup = ar.sort((a, b) => {
+        a - b
+    })
+    let a = solution(dup)
+
+    let div = document.querySelector('div')
+        //div.innerText = a
+
+    function solution(A) {
+        let result = 0
+        let aa = 0
+
+        for (let element of A) {
+            // Apply Bitwise XOR to the current and next element
+            result ^= element
+                //alert(result + '/' + element)
+        }
+
+        return result
+    }
+
+    let n = Binary(1024)
+    div.innerText = n
+
+    function Binary(x) {
+        let y = Math.floor(x / 2)
+
+        if (x <= 1) return x
+        else {
+            // x += '' + x % 2
+            return x += '' + x % 2 + Binary(y)
+        }
+    }
+</script>

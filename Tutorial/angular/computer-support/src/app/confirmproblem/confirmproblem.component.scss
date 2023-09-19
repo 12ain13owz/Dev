@@ -1,0 +1,31 @@
+.input-field {
+  display: flex;
+  margin-bottom: 15px;
+  align-items: center;
+
+  label {
+    width: 90px;
+    margin-right: 10px;
+  }
+
+  span {
+    width: 100%;
+    color: #2283fb;
+  }
+
+  .img-file {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  img {
+    width: 30px;
+    margin-left: 6px;
+  }
+}
+
+.line {
+  margin: 16px 0;
+  border: 1px solid #ccc;
+}

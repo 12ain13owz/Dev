@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      .dashboard {
+        display: grid;
+        grid-template-rows: auto 1fr auto; /* Navbar, Content, Footer */
+        grid-template-columns: 200px 1fr; /* Sidebar, Content */
+        grid-template-areas:
+          "navbar navbar"
+          "sidebar content"
+          "footer footer";
+        height: 100vh;
+      }
+
+      .navbar {
+        grid-area: navbar;
+        background-color: #333;
+        color: #fff;
+        padding: 10px;
+      }
+
+      .sidebar {
+        grid-area: sidebar;
+        background-color: #555;
+        color: #fff;
+        padding: 10px;
+      }
+
+      .content {
+        grid-area: content;
+        background-color: #eee;
+        padding: 10px;
+      }
+
+      .data {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .data-item {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 4px;
+      }
+
+      .footer {
+        grid-area: footer;
+        background-color: #333;
+        color: #fff;
+        padding: 10px;
+      }
+    </style>
+
+    <div class="dashboard">
+      <header class="navbar">Navbar</header>
+      <aside class="sidebar">Sidebar</aside>
+      <main class="content">Content</main>
+      <main class="content">
+        <h1>Welcome to the Dashboard</h1>
+        <div class="data">
+          <div class="data-item">
+            <h3>Data Item 1</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </div>
+          <div class="data-item">
+            <h3>Data Item 2</h3>
+            <p>Quisque consequat libero ac elit ullamcorper lacinia.</p>
+          </div>
+          <div class="data-item">
+            <h3>Data Item 3</h3>
+            <p>Praesent fermentum libero sit amet facilisis tempor.</p>
+          </div>
+        </div>
+      </main>
+      <footer class="footer">Footer</footer>
+    </div>
+  </body>
+</html>

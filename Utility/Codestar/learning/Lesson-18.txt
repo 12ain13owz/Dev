@@ -1,0 +1,38 @@
+﻿create server on cloud
+
+sudo apt update
+sudo apt install mongodb
+mongo
+show dbs
+use amozan (dbname)
+db.product.insert({title:'Astronomy', price:150}) // insertData
+db.product.find() //showData
+use icoffee (dbname)
+db.branch.insert({name: 'Siam Square', type: 'F', staff: 12})
+
+db.tbname.find 
+1. <  - lt
+2. <= - lte
+3. >  - gt
+4. >= - gte
+
+Exam. db.product.find({price: {$gte: 160}})
+db.product.find({price: {$gte: 140, $lte: 160}})
+
+db.product.remove({}) // ลบทั้งหมด
+db.product.remove({ title: 'Mathematics'}) // ลบตามเงื่อนไข
+db.product.update({ title:'Astronomy'}, {title:'Astronomy 2nd'), price: 155})
+
+ลง nodejs
+sudo apt install npm
+sudo apt install nodejs
+sudo npm install n -g
+sudo n latest
+sudo n stable
+
+mkdir web // สร้าง folder web
+cd web // dir to web
+npm install mongodb
+
+ls // เช็คไฟล์ ใน folder
+vi // สร้างไฟล์ 

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+	<meta charset="utf-8">
+	<meta name='copyright' content='BizCom-BSRU'>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>แบบฝึกหัด ชุดที่ 1</title>	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>	
+  <style>
+    .text-bold {
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+		<div class="container" id="accordian">
+			<div class="col mt-3"><h3>แบบฝึกหัด ชุดที่ 1</h3></div>
+			<div class="ml-4">
+        <div id="quiz"></div>			
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+
+<script src="db1.js"></script>
+<script>       
+  for (let value of myQuestion) {      
+    $('#quiz')
+    .append(`<p class="mb-1">${value.question}</p>`)
+    .append(`
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="${value.no}" value="a" onclick=Check(this)>
+        <label class="form-check-label" name="label${value.no}">${value.answer.a}</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="${value.no}" value="b" onclick=Check(this)>
+        <label class="form-check-label" name="label${value.no}">${value.answer.b}</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="${value.no}" value="c" onclick=Check(this)>
+        <label class="form-check-label" name="label${value.no}">${value.answer.c}</label>
+      </div>
+      <div class="form-check mb-3">
+        <input class="form-check-input" type="radio" name="${value.no}" value="d" onclick=Check(this)>
+        <label class="form-check-label" name="label${value.no}">${value.answer.d}</label>
+      </div>   
+      <div class="mb-3 ml-3">
+        <span class="text-primary" hidden name="span${value.no}">${value.explain}</span>
+      </div>
+      <hr/>     
+      `)                           
+  }  
+  
+  function Check(el) {            
+    const index = myQuestion.map(data => data.no).findIndex(name => el.name == name)
+    const data = myQuestion[index]
+    
+    const label = el.nextElementSibling
+    const labels = document.getElementsByName(`label${el.name}`)    
+    for (let lab of labels) {
+      lab.className = "form-check-label"
+    }
+
+    if (el.value == data.correctAnswer) {           
+      label.className = "form-check-label text-success text-bold"
+    } else {
+      label.className = "form-check-label text-danger text-bold"
+    }    
+
+    const span = document.getElementsByName(`span${el.name}`)
+    span[0].removeAttribute('hidden')
+  }
+</script>

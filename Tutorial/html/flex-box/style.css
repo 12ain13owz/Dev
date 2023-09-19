@@ -1,0 +1,520 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background-image: linear-gradient(260deg, #2376ae 0%, #c16ecf 100%);
+}
+
+.box {
+  color: white;
+  font-size: 100px;
+  text-align: center;
+  text-shadow: 4px 4px 0 rgba(0, 0, 0, 0.1);
+  padding: 10px;
+}
+
+.box1 {
+  background: greenyellow;
+}
+.box2 {
+  background: blue;
+}
+.box3 {
+  background: purple;
+}
+.box4 {
+  background: gray;
+}
+.box5 {
+  background: orange;
+}
+.box6 {
+  background: yellow;
+}
+.box7 {
+  background: red;
+}
+.box8 {
+  background: gold;
+}
+.box9 {
+  background: green;
+}
+.box10 {
+  background: lawngreen;
+}
+
+.container {
+  display: flex;
+  border: 10px solid goldenrod;
+  height: 100vh;
+  flex-wrap: wrap;
+  /* align-items: flex-start; */
+  /* justify-content: space-around; */
+  /* align-content: flex-start; */
+  flex-direction: column;
+}
+
+.box {
+  /* width: 33.33%; */
+  flex-grow: 1;
+  flex-basis: 250px;
+
+  /* flex: 0 1; */
+  /* flex-grow, flex-shrink, flex-basis */
+}
+
+.box3 {
+  /* flex-basis: 600px; */
+  /* flex-grow: 0; */
+  flex-grow: 5;
+}
+
+.box4 {
+  flex-basis: 100px;
+  /* flex-grow: 10; */
+  /* flex: 2; */
+  /* padding-bottom: 200px; */
+}
+
+.box5 {
+  /* flex: 3; */
+}
+
+.box6 {
+  /* padding-bottom: 0; */
+}
+.box9 {
+  /* padding-bottom: 50px; */
+  /* align-self: flex-end; */
+}
+
+/* 2. ------------------------------------------------------------------------------------------------------ */
+
+a {
+  padding: 20px 5px;
+  color: white;
+  font-weight: 100;
+  letter-spacing: 2px;
+  text-decoration: none;
+  background: rgba(0, 0, 0, 0.2);
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+a:hover {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.toggleNav {
+  display: none;
+}
+
+img {
+  width: 100%;
+}
+
+.wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 30px;
+}
+
+section,
+footer {
+  text-align: center;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  margin: 20px 0;
+  color: #fff;
+  font-weight: 100;
+}
+
+.flex-nav ul {
+  border: 1px solid black;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.flex-nav li {
+  flex: 3;
+}
+
+.flex-nav .social {
+  flex: 1;
+}
+
+@media all and (max-width: 1000px) {
+  .flex-nav ul {
+    flex-wrap: wrap;
+  }
+
+  .flex-nav li {
+    flex: 1 1 50%;
+  }
+
+  .flex-nav .social {
+    flex: 1 1 25%;
+  }
+}
+
+@media all and (max-width: 500px) {
+  .flex-nav li {
+    flex-basis: 100%;
+  }
+
+  /* Flex Container */
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Flex Item */
+  .wrapper > * {
+    order: 9999;
+  }
+
+  .flex-nav {
+    order: 0;
+  }
+
+  .toggleNav {
+    display: block;
+  }
+
+  .flex-nav ul {
+    display: none;
+  }
+
+  .top {
+    order: 2;
+  }
+
+  .details {
+    order: 3;
+  }
+
+  .signup {
+    order: 4;
+  }
+}
+
+/* 3. ------------------------------------------------------------------------------------------------------ */
+
+.slider-nav {
+  /* display: flex; */
+}
+
+/* our flex container */
+.slider-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+/* oru first flex item */
+.slider-nav li {
+  flex: 2; /* This is flex item -ish */
+  text-align: center;
+  display: flex; /* tThis is flex container */
+}
+
+.slider-nav .arrow {
+  flex: 1;
+}
+
+.arrow a {
+  font-size: 30px;
+}
+
+.slider-nav a {
+  flex-basis: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* We want to strech as well and center */
+}
+
+/* 4. ------------------------------------------------------------------------------------------------------ */
+.plan ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.plan ul li {
+  padding: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.plan ul li:last-child {
+  border-bottom: 0;
+}
+
+.plan a {
+  text-decoration: none;
+  background-color: #feff00;
+  padding: 10px;
+  color: black;
+  border-radius: 4px;
+  width: inherit;
+}
+
+.plan h2 {
+  text-transform: uppercase;
+  color: #fff;
+  letter-spacing: 2px;
+  text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.price {
+  font-size: 50px;
+  font-family: serif;
+  margin: 10px 0;
+}
+
+/* Flex container */
+.pricing-grid {
+  max-width: 750px;
+  margin: 0 auto;
+  border: 1px solid red;
+  display: flex;
+  align-items: center;
+}
+
+.plan {
+  background: rgba(255, 255, 255, 0.2);
+  margin: 20px;
+  padding: 20px;
+  border-radius: 4px;
+  text-align: center;
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.plan > * {
+  flex: 1 1 100%;
+}
+
+.plan .cta {
+  align-self: flex-end;
+}
+
+/* 5. ------------------------------------------------------------------------------------------------------ */
+.elements {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: stretch;
+  border: 2px solid red;
+}
+
+.item {
+  background: rgba(255, 255, 255, 0.2);
+  margin: 10px;
+  padding: 20px;
+  font-size: 30px;
+  /* flex: 1 1 33.33%; */
+  flex: 0 1 calc(33.33% - 20px);
+  /* flex: 1 1 calc(50% - 20px); */
+}
+
+.item.large {
+  font-size: 40px;
+}
+
+.item.small {
+  font-size: 20px;
+}
+
+/* 6. ------------------------------------------------------------------------------------------------------ */
+.flex-form > * {
+  border: 0;
+  padding: 10px;
+  background: #fff;
+  line-height: 50px;
+  font-size: 20px;
+  border-radius: 0;
+  outline: 0;
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+  appearance: none;
+}
+
+.flex-form > *:last-child {
+  border-right: 0;
+}
+
+.cover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.flex-form {
+  display: flex;
+  border: 20px solid rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+}
+
+input[typr="search"] {
+  flex-basis: 500px;
+}
+
+/* Test ------------------------------------------------------------------------------------------------------ */
+.flex-container {
+  display: flex;
+  max-width: 1000px;
+  margin: 0 auto;
+  border: 3px solid red;
+}
+
+.flex-box {
+  flex: 1;
+  margin: 20px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.flex-box h2 {
+  color: #fff;
+  text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.flex-box button {
+  width: 100%;
+  padding: 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.5);
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #fff;
+  transition: all 0.3s;
+}
+
+.flex-box button:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.app-warp {
+  max-width: 620px;
+  height: 90vh;
+  margin: 5vh auto 5vh auto;
+  border: 10px solid rgba(0, 0, 0, 0.7);
+  border-bottom-width: 70px;
+  border-radius: 10px;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);
+}
+
+.app-warp a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.app-warp a.button {
+  background: rgba(0, 0, 0, 0.1);
+  padding: 1rem 1.5rem;
+  border-radius: 4px;
+}
+
+.content {
+  padding: 20px;
+  background: #fff;
+  box-shadow: inset 0 5px 0 rgba(0, 0, 0, 0.1);
+  line-height: 1.6;
+}
+
+.content img {
+  max-width: 50%;
+  float: left;
+  margin-right: 10px;
+}
+
+.icon-bar a {
+  flex: 1;
+  text-align: center;
+  padding: 1.5rem;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  background: #efca51;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.icon-bar a:first-child {
+  border-left: 0;
+}
+
+.icon-bar a:first-child,
+.icon-bar a:hover {
+  border-bottom: 5px solid rgba(0, 0, 0, 0.1);
+}
+
+.icon-bar {
+  border-top: 1px solid #e6e6e6;
+}
+
+.icon-bar i {
+  display: block;
+  font-size: 2.5rem;
+  color: #fff;
+  text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+  padding-bottom: 1rem;
+}
+
+.app-header {
+  background: #f0cb45;
+  color: rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+}
+
+.app-warp {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.app-warp > * {
+  flex: 1 1 auto;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.app-header a {
+  width: auto;
+}
+
+.app-header h1 {
+  font-size: 28px;
+}
+
+.content {
+  overflow-y: scroll;
+}
+
+.icon-bar {
+  display: flex;
+}
+
+.icon-bar a {
+  /* width: auto; */
+  flex: 1;
+}

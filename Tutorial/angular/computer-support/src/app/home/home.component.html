@@ -1,0 +1,28 @@
+<div class="container">
+  <p-card>
+    <h3>แจ้งปัญหา</h3>
+    <div class="p-fluid">
+      <div class="p-field">
+        <label>ระบุปัญหา <span style="color: red">*</span></label>
+        <input type="text" pInputText />
+      </div>
+
+      <div class="p-field">
+        <label>ไฟล์แนบ</label>
+        <input type="file" pInputText />
+      </div>
+    </div>
+
+    <div style="text-align: right">
+      <button
+        (click)="onNext()"
+        pButton
+        pRipple
+        class="p-button-help"
+        type="button"
+      >
+        ถัดไป<i class="pi pi-arrow-right icon-right"></i>
+      </button>
+    </div>
+  </p-card>
+</div>

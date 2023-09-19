@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+        /* border: 10px solid yellowgreen; */
+        margin: 0;
+        padding: 0;
+      }
+
+      .container .box {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 25%;
+        padding: 0.5rem;
+        /* background-color: red; */
+        /* background: red; */
+        /* width: 200px; */
+        /* flex: 1 1 auto; */
+        /* flex: 1 1 30%; */
+        /* text-align: center; */
+        /* width: 33.3333%; */
+      }
+
+      .box img {
+        width: 100%;
+        border-radius: 0.75rem 0.5rem 0 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <div class="container">
+      <div class="box box1">
+        <img src="https://picsum.photos/200/300" alt="" />
+        <p>1</p>
+      </div>
+      <div class="box">
+        <img src="https://picsum.photos/200/301" alt="" />
+      </div>
+      <div class="box">
+        <img src="https://picsum.photos/200/302" alt="" />
+      </div>
+      <div class="box">
+        <img src="https://picsum.photos/200/303" alt="" />
+      </div>
+      <div class="box">
+        <img src="https://picsum.photos/200/304" alt="" />
+      </div>
+      <div class="box">6</div>
+      <div class="box">7</div>
+      <div class="box">8</div>
+      <div class="box">9</div>
+      <div class="box">10</div>
+    </div> -->
+
+    <div class="cards">
+      <div class="card-warpper">
+        <div class="card-body">
+          <img src="https://picsum.photos/200/300" class="card-image" />
+          <div class="card-content">
+            <h2>Flex</h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus
+              eligendi, deserunt in cumque nostrum sed. Consequatur at quas
+              alias temporibus in ipsa consequuntur delectus aperiam dolorum,
+              vero, obcaecati sunt fugiat.
+            </p>
+            <button class="card-btn">Button</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-warpper">
+        <div class="card-body">
+          <img src="https://picsum.photos/200/301" class="card-image" />
+          <div class="card-content">
+            <h2>Flex Box</h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus
+              eligendi, deserunt in cumque nostrum sed. Consequatur at quas
+              alias temporibus in ipsa consequuntur delectus aperiam dolorum,
+              vero, obcaecati sunt fugiat. Lorem ipsum dolor sit amet
+              consectetur adipisicing elit. Delectus eligendi, deserunt in
+              cumque nostrum sed. Consequatur at quas alias temporibus in ipsa
+              consequuntur delectus aperiam dolorum, vero, obcaecati sunt
+              fugiat.
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus
+              eligendi, deserunt in cumque nostrum sed. Consequatur at quas
+              alias temporibus in ipsa consequuntur delectus aperiam dolorum,
+              vero, obcaecati sunt fugiat. Lorem ipsum dolor sit amet
+              consectetur adipisicing elit. Delectus eligendi, deserunt in
+              cumque nostrum sed. Consequatur at quas alias temporibus in ipsa
+              consequuntur delectus aperiam dolorum, vero, obcaecati sunt
+              fugiat.
+            </p>
+            <button class="card-btn">Button</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-warpper">
+        <div class="card-body">
+          <img src="https://picsum.photos/200/302" class="card-image" />
+          <div class="card-content">
+            <h2>Flex</h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus
+              eligendi, deserunt in cumque nostrum sed. Consequatur at quas
+              alias temporibus in ipsa consequuntur delectus aperiam dolorum,
+              vero, obcaecati sunt fugiat. Lorem ipsum dolor sit amet
+              consectetur adipisicing elit. Delectus eligendi, deserunt in
+              cumque nostrum sed. Consequatur at quas alias temporibus in ipsa
+              consequuntur delectus aperiam dolorum, vero, obcaecati sunt
+              fugiat.
+            </p>
+            <button class="card-btn">Button</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--     
+    <ul class="cards">
+      <li class="cards__item">
+        <div class="card">
+          <img src="https://unsplash.it/800/600?image=82" class="card__image" />
+          <div class="card__content">
+            <div class="card__title">Flex</div>
+            <p class="card__text">
+              This is the shorthand for flex-grow, flex-shrink and flex-basis
+              combined. The second and third parameters (flex-shrink and
+              flex-basis) are optional. Default is 0 1 auto.
+            </p>
+            <button class="btn btn--block card__btn">Button</button>
+          </div>
+        </div>
+      </li>
+      <li class="cards__item">
+        <div class="card">
+          <img src="https://unsplash.it/800/600?image=11" class="card__image" />
+          <div class="card__content">
+            <div class="card__title">Flex Grow</div>
+            <p class="card__text">
+              This defines the ability for a flex item to grow if necessary. It
+              accepts a unitless value that serves as a proportion. It dictates
+              what amount of the available space inside the flex container the
+              item should take up.
+            </p>
+            <button class="btn btn--block card__btn">Button</button>
+          </div>
+        </div>
+      </li>
+      <li class="cards__item">
+        <div class="card">
+          <img src="https://unsplash.it/800/600?image=39" class="card__image" />
+          <div class="card__content">
+            <div class="card__title">Flex Shrink</div>
+            <p class="card__text">
+              This defines the ability for a flex item to shrink if necessary.
+              Negative numbers are invalid.
+            </p>
+            <button class="btn btn--block card__btn">Button</button>
+          </div>
+        </div>
+      </li>
+      <li class="cards__item">
+        <div class="card">
+          <img src="https://unsplash.it/800/600?image=59" class="card__image" />
+          <div class="card__content">
+            <div class="card__title">Flex Basis</div>
+            <p class="card__text">
+              This defines the default size of an element before the remaining
+              space is distributed. It can be a length (e.g. 20%, 5rem, etc.) or
+              a keyword. The auto keyword means "look at my width or height
+              property." This defines the default size of an element before the
+              remaining space is distributed. It can be a length (e.g. 20%,
+              5rem, etc.) or a keyword. The auto keyword means "look at my width
+              or height property."
+            </p>
+            <button class="btn btn--block card__btn">Button</button>
+          </div>
+        </div>
+      </li>
+    </ul> -->
+  </body>
+</html>

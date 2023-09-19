@@ -1,0 +1,241 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+:root {
+  --poppins: "Poppins", sans-serif;
+  --lato: "Lato", sans-serif;
+
+  --light: #f9f9f9;
+  --blue: #3c91e6;
+  --light-blue: #cfe8ff;
+  --grey: #eee;
+  --dark-grey: #aaaaaa;
+  --dark: #342e37;
+  --red: #db504a;
+  --yellow: #ffce26;
+  --light-yellow: #fff2c6;
+  --orange: #fd7238;
+  --light-orange: #ffe0d3;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body.dark {
+  --light: #0c0c1e;
+  --grey: #060714;
+  --dark: #fbfbfb;
+}
+
+body {
+  background: var(--grey);
+  overflow-x: hidden;
+}
+
+#sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 100%;
+  background: var(--light);
+  font-family: var(--lato);
+  z-index: 1000;
+}
+
+#sidebar .brand {
+  display: flex;
+  align-items: center;
+  height: 56px;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--blue);
+}
+
+#sidebar .brand .bx {
+  display: flex;
+  justify-content: center;
+  min-width: 60px;
+}
+
+#sidebar .side-menu {
+  width: 100%;
+  margin-top: 48px;
+}
+
+#sidebar .side-menu li {
+  margin-left: 6px;
+  padding: 4px;
+  height: 48px;
+  background: transparent;
+  border-radius: 48px 0 0 48px;
+}
+
+#sidebar .side-menu li.active {
+  position: relative;
+  background: var(--grey);
+}
+
+#sidebar .side-menu li.active a {
+  color: var(--blue);
+}
+
+#sidebar .side-menu li.active::before {
+  content: "";
+  position: absolute;
+  top: -40px;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-shadow: 20px 20px 0 var(--grey);
+  z-index: -1;
+}
+
+#sidebar .side-menu li.active::after {
+  content: "";
+  position: absolute;
+  bottom: -40px;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-shadow: 20px -20px 0 var(--grey);
+  z-index: -1;
+}
+
+#sidebar .side-menu li a {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: var(--light);
+  border-radius: 48px;
+  font-size: 16px;
+  color: var(--dark);
+}
+
+#sidebar .side-menu li a.logout {
+  color: var(--red);
+}
+
+#sidebar .side-menu.top li a:hover {
+  color: var(--blue);
+}
+
+#sidebar .side-menu li a .bx {
+  display: flex;
+  justify-content: center;
+  min-width: calc(60px - ((4px + 6px) * 2));
+}
+
+#content {
+  position: relative;
+  left: 200px;
+  width: calc(100% - 200px);
+}
+
+#content nav {
+  display: flex;
+  align-items: center;
+  grid-gap: 24px;
+  padding: 0 24px;
+  height: 56px;
+  background: var(--light);
+  font-family: var(--lato);
+}
+
+#content nav a {
+  color: var(--dark);
+}
+
+#content nav .bx.bx-menu {
+  cursor: pointer;
+}
+
+#content nav .nav-link {
+  font-size: 16px;
+  transition: 0.3s ease;
+}
+
+#content nav .nav-link:hover {
+  color: var(--blue);
+}
+
+#content nav form {
+  margin-right: auto;
+  width: 100%;
+  max-width: 400px;
+}
+
+#content nav form .form-input {
+  display: flex;
+  align-items: center;
+  height: 36px;
+}
+
+#content nav form .form-input input {
+  flex-grow: 1;
+  padding: 0 16px;
+  height: 100%;
+  background: var(--grey);
+  border: none;
+  border-radius: 36px 0 0 36px;
+  outline: none;
+}
+
+#content nav form .form-input button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 100%;
+  background: var(--blue);
+  color: var(--light);
+  font-size: 18px;
+  border: none;
+  border-radius: 0 36px 36px 0;
+  outline: none;
+  cursor: pointer;
+}
+
+#content nav .notification {
+  position: relative;
+  font-size: 20px;
+}
+
+#content nav .notification .num {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  background: var(--red);
+  border: 2px solid var(--light);
+  border-radius: 50%;
+  color: var(--light);
+  font-weight: 700;
+  font-size: 10px;
+}
+
+#content nav .profile img {
+  width: 36px;
+  height: 36px;
+}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Toast Notification with Progress Bar</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="toast bottom-left">
+        <div class="toast-content">
+          <i class="fa-solid fa-check check"></i>
+
+          <div class="message">
+            <div class="text text-1">Success</div>
+            <div class="text text-2">Your changes has been saved</div>
+          </div>
+        </div>
+
+        <i class="fa-solid fa-xmark close"></i>
+        <div class="progress"></div>
+      </div>
+
+      <button type="button">Show Toast</button>
+    </div>
+  </body>
+</html>
+
+<script src="script.js"></script>

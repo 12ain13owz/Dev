@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Screen Capture</title>
+  </head>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    .box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100dvh;
+      width: 100dvw;
+    }
+
+    .item {
+      position: relative;
+      width: 600px;
+      height: 600px;
+      background: url("https://cdn.pixabay.com/photo/2023/07/28/09/14/spider-8154872_1280.jpg");
+      z-index: 1;
+    }
+
+    .black-screen {
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      opacity: 0;
+      visibility: hidden;
+    }
+  </style>
+  <body>
+    <div class="box">
+      <div class="item">
+        <div class="black-screen"></div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script>
+  async function startCapture(displayMediaOptions) {
+    let captureStream = null;
+
+    try {
+      captureStream = await navigator.mediaDevices.getDisplayMedia(
+        displayMediaOptions
+      );
+    } catch (err) {
+      console.error(`Error: ${err}`);
+    }
+    return captureStream;
+  }
+</script>

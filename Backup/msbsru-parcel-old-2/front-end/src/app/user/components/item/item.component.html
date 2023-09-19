@@ -1,0 +1,300 @@
+<div class="grid-container">
+  <mat-card>
+    <mat-card-title class="text-gray">กรองข้อมูล</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="form">
+        <ngx-skeleton-loader
+          *ngIf="!menuStatus"
+          appearance="line"
+          count="2"
+          [theme]="{
+            display: 'flex',
+            'height.px': 40,
+            width: '100%'
+          }"
+        >
+        </ngx-skeleton-loader>
+
+        <mat-tab-group
+          animationDuration="0ms"
+          (selectedIndexChange)="onFilter($event)"
+        >
+          <mat-tab *ngFor="let data of menuStatus">
+            <ng-template mat-tab-label>{{ data.name }}</ng-template>
+          </mat-tab>
+        </mat-tab-group>
+
+        <div
+          fxLayout="row wrap"
+          fxLayoutGap="10px"
+          fxLayoutAlign="start center"
+          *ngIf="menuCategory"
+        >
+          <mat-form-field appearance="outline">
+            <mat-label>ประเภท</mat-label>
+            <mat-select
+              formControlName="category"
+              (closed)="clearTxt()"
+              (opened)="onOpened()"
+              (selectionChange)="onFilter()"
+            >
+              <div class="search">
+                <input
+                  [(ngModel)]="searchTxt"
+                  [ngModelOptions]="{ standalone: true }"
+                  matInput
+                  #inputSearch
+                  placeholder="ค้นหา"
+                />
+              </div>
+
+              <mat-option
+                *ngFor="let data of menuCategory | search: searchTxt"
+                [value]="data.id"
+                >{{ data.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div fxLayout="row" fxLayoutGap="10px">
+            <mat-form-field appearance="outline">
+              <mat-label>เลือกวันที่</mat-label>
+              <mat-date-range-input [rangePicker]="picker">
+                <input
+                  formControlName="start"
+                  matStartDate
+                  (click)="picker.open()"
+                  readonly
+                />
+                <input
+                  formControlName="end"
+                  matEndDate
+                  (click)="picker.open()"
+                  readonly
+                />
+              </mat-date-range-input>
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field>
+
+            <button
+              mat-stroked-button
+              class="btn-date"
+              (click)="getItemByDate()"
+              [disabled]="isButton"
+            >
+              ตกลง
+            </button>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-title class="text-gray mb-20">รายการอุปกรณ์</mat-card-title>
+    <mat-card-content>
+      <div
+        fxLayout="row"
+        fxLayoutGap="10px"
+        fxLayoutAlign="space-between center"
+        class="container-barcode"
+      >
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <span class="text-gray font-500"
+            >เลือกแล้ว {{ selection.selected.length }} รายการ</span
+          >
+          <button mat-button color="primary">บาร์โค้ด</button>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <button mat-button color="accent">ทั้งหมด</button>
+          <button mat-button color="warn">เฉพาะที่ยังไม่ปริ้น</button>
+        </div>
+      </div>
+      <mat-paginator
+        [pageSize]="25"
+        [pageSizeOptions]="[25, 50, 75, 100]"
+        showFirstLastButtons
+      ></mat-paginator>
+
+      <table mat-table matSort [dataSource]="dataSource">
+        <ng-container matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef width="80px">
+            <mat-checkbox
+              (change)="$event ? masterToggle() : null"
+              [checked]="selection.hasValue() && isAllSelected()"
+              [indeterminate]="selection.hasValue() && !isAllSelected()"
+              [aria-label]="checkboxLabel()"
+            >
+            </mat-checkbox>
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <mat-checkbox
+              (click)="$event.stopPropagation()"
+              (change)="$event ? selection.toggle(row) : null"
+              [checked]="selection.isSelected(row)"
+              [aria-label]="checkboxLabel(row)"
+            >
+            </mat-checkbox>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="image_path">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            width="120px"
+            style="text-align: center"
+          >
+            รูป
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <div *ngIf="row.id" class="image-col">
+              <img *ngIf="row.image_path" [src]="url + row.image_path" />
+              <img *ngIf="!row.image_path" src="assets/images/default.png" />
+            </div>
+            <div *ngIf="!row.id">
+              <ngx-skeleton-loader
+                appearance="line"
+                [theme]="{
+                  display: 'flex',
+                  'height.px': 40,
+                  width: '90%',
+                  margin: '0'
+                }"
+              >
+              </ngx-skeleton-loader>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="track_id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header width="110px">
+            เลข Track
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <div *ngIf="row.id">{{ row.track_id }}</div>
+            <div *ngIf="!row.id">
+              <ngx-skeleton-loader
+                appearance="line"
+                [theme]="{
+                  display: 'flex',
+                  width: '90%',
+                  margin: '0'
+                }"
+              ></ngx-skeleton-loader>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="detail">
+          <th mat-header-cell *matHeaderCellDef>รายละเอียด</th>
+          <td mat-cell *matCellDef="let row">
+            <div *ngIf="row.id">{{ row.detail }}</div>
+            <div *ngIf="!row.id">
+              <ngx-skeleton-loader
+                appearance="line"
+                [theme]="{
+                  display: 'flex',
+                  width: '90%',
+                  margin: '0'
+                }"
+              ></ngx-skeleton-loader>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef width="10%">สถานะ</th>
+          <td mat-cell *matCellDef="let row">
+            <div *ngIf="row.id">{{ menuStatus[row.status_id].name }}</div>
+            <div *ngIf="!row.id">
+              <ngx-skeleton-loader
+                appearance="line"
+                [theme]="{
+                  display: 'flex',
+                  width: '90%',
+                  margin: '0'
+                }"
+              ></ngx-skeleton-loader>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="category">
+          <th mat-header-cell *matHeaderCellDef width="10%">ประเภท</th>
+          <td mat-cell *matCellDef="let row">
+            <div *ngIf="row.id">{{ menuCategory[row.category_id].name }}</div>
+            <div *ngIf="!row.id">
+              <ngx-skeleton-loader
+                appearance="line"
+                [theme]="{
+                  display: 'flex',
+                  width: '90%',
+                  margin: '0'
+                }"
+              ></ngx-skeleton-loader>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="print">
+          <th mat-header-cell *matHeaderCellDef width="5%">ปริ้น</th>
+          <td mat-cell *matCellDef="let row">
+            <div *ngIf="row.id">
+              <mat-icon *ngIf="row.print" class="text-blue middle"
+                >check_circle</mat-icon
+              >
+              <mat-icon *ngIf="!row.print" class="text-red middle"
+                >unpublished</mat-icon
+              >
+            </div>
+            <div *ngIf="!row.id">
+              <ngx-skeleton-loader
+                appearance="line"
+                [theme]="{
+                  display: 'flex',
+                  width: '90%',
+                  margin: '0'
+                }"
+              ></ngx-skeleton-loader>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="edit">
+          <th mat-header-cell *matHeaderCellDef width="5%">แก้ไข</th>
+          <td mat-cell *matCellDef="let row">
+            <div *ngIf="row.id">
+              <button mat-icon-button color="primary" (click)="openDialog(row)">
+                <mat-icon>edit</mat-icon>
+              </button>
+            </div>
+            <div *ngIf="!row.id">
+              <ngx-skeleton-loader
+                appearance="circle"
+                [theme]="{ display: 'flex' }"
+              ></ngx-skeleton-loader>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+
+      <mat-paginator
+        *ngIf="paginator"
+        (page)="handlePageBottom($event)"
+        [length]="paginator.length"
+        [pageSize]="paginator.pageSize"
+        [pageIndex]="paginator.pageIndex"
+        [pageSizeOptions]="paginator.pageSizeOptions"
+        showFirstLastButtons
+      ></mat-paginator>
+    </mat-card-content>
+  </mat-card>
+</div>
