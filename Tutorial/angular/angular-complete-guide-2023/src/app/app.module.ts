@@ -62,6 +62,9 @@ import { LoggingService2 } from './logging.service';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { shoppingListReducer } from './shopping/shopping-list/store/shopping-list.reducer';
+import { authReducer } from './shopping/auth/store/auth.reducer';
+
+import * as fromApp from './store/app.reducer';
 
 @NgModule({
   declarations: [
@@ -114,7 +117,7 @@ import { shoppingListReducer } from './shopping/shopping-list/store/shopping-lis
     HttpClientModule,
     SharedModule,
     CoreModule,
-    StoreModule.forRoot({ shoppingList: shoppingListReducer }, {}),
+    StoreModule.forRoot(fromApp.appReducer),
     EffectsModule.forRoot([]),
   ],
   providers: [

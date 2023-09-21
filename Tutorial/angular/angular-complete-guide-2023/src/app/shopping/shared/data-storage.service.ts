@@ -4,6 +4,7 @@ import { RecipeService } from '../recipes/recipe.service';
 import { Observable, exhaustMap, map, take, tap } from 'rxjs';
 import { Recipe } from '../recipes/recipe.model';
 import { AuthService } from '../auth/auth.service';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({ providedIn: 'root' })
 export class DataStroageService {
@@ -12,7 +13,7 @@ export class DataStroageService {
     private recipeSerice: RecipeService,
     private authService: AuthService
   ) {}
-  private url: string = ''; // Firebase realtime database url
+  private url: string = environment.apiUrl; // Firebase realtime database url
 
   storeRecipes() {
     const recipes = this.recipeSerice.getRecipes();
@@ -22,7 +23,7 @@ export class DataStroageService {
   }
 
   fetchRecipes() {
-    return this.http.get<Recipe[]>(this.url).pipe(
+    return this.http.get<Recipe[]>(this.url, { responseType: 'json' }).pipe(
       map((recipes) => {
         return recipes.map((recipe) => ({
           ...recipe,

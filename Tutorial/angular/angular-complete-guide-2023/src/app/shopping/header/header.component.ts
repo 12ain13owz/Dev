@@ -8,8 +8,10 @@ import {
 } from '@angular/core';
 import { DataStroageService } from '../shared/data-storage.service';
 import { AuthService } from '../auth/auth.service';
-import { Subscription } from 'rxjs';
+import { Subscription, map } from 'rxjs';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import * as fromApp from '../../store/app.reducer';
 
 @Component({
   selector: 'app-header',
@@ -29,13 +31,27 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   constructor(
     private dataStorageService: DataStroageService,
-    private authService: AuthService
+    private authService: AuthService,
+    private store: Store<fromApp.AppState>
   ) {}
 
   ngOnInit(): void {
-    this.userSub = this.authService.user.subscribe((user) => {
-      this.isAuthenticated = !!user;
-    });
+    // Rxjs
+    // this.userSub = this.authService.user.subscribe((user) => {
+    //   this.isAuthenticated = !!user;
+    //   console.log('Rxjs', user);
+    // });
+
+    // Ngrx
+    this.userSub = this.store
+      .select('auth')
+      .pipe(map((authState) => authState.user))
+      .subscribe((user) => {
+        this.isAuthenticated = !!user;
+        console.log('Ngrx', user);
+        console.log('Ngrx', !user);
+        console.log('Ngrx', !!user);
+      });
   }
 
   ngOnDestroy(): void {

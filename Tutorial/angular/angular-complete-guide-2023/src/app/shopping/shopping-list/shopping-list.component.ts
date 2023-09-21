@@ -4,6 +4,9 @@ import { ShoppingListService } from './shopping-list.service';
 import { Observable, Subscription } from 'rxjs';
 import { LoggingService2 } from 'src/app/logging.service';
 import { Store } from '@ngrx/store';
+import * as fromShoppingList from './store/shopping-list.reducer';
+import * as ShoppingListActions from './store/shopping-list.actions';
+import * as fromApp from '../../store/app.reducer';
 
 @Component({
   selector: 'app-shopping-list',
@@ -23,7 +26,8 @@ export class ShoppingListComponent {
   constructor(
     private slService: ShoppingListService,
     private loggingService: LoggingService2,
-    private store: Store<{ shoppingList: { ingredients: Ingredient[] } }>
+    // private store: Store<{ shoppingList: { ingredients: Ingredient[] } }>
+    private store: Store<fromApp.AppState>
   ) {}
 
   ngOnInit(): void {
@@ -50,5 +54,6 @@ export class ShoppingListComponent {
 
   onEditItem(index: number) {
     this.slService.startedEditing.next(index);
+    this.store.dispatch(new ShoppingListActions.StartEdit(index));
   }
 }
