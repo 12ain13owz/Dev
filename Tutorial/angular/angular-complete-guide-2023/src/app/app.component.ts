@@ -4,6 +4,9 @@ import { ObsUserService } from './observables/obs-user.service';
 import { Subscription } from 'rxjs';
 import { AuthService } from './shopping/auth/auth.service';
 import { LoggingService2 } from './logging.service';
+import { Store } from '@ngrx/store';
+import * as fromApp from './store/app.reducer';
+import * as AuthActions from './shopping/auth/store/auth.actions';
 
 @Component({
   selector: 'app-root',
@@ -89,11 +92,16 @@ export class AppComponent implements OnInit {
     private AccountService: AccountService,
     private obsUser: ObsUserService,
     private authService: AuthService,
-    private loggingService: LoggingService2
+    private loggingService: LoggingService2,
+    private store: Store<fromApp.AppState>
   ) {}
 
   ngOnInit(): void {
-    this.authService.autoLogin();
+    // Rxjs
+    // this.authService.autoLogin();
+
+    // Ngrx
+    this.store.dispatch(AuthActions.AutoLoginAction());
     this.loggingService.printLog('Hello from AppComponent');
   }
 

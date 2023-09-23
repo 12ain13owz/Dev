@@ -56,7 +56,7 @@ export class AuthService {
       .pipe(catchError(this.handleError));
   }
 
-  login(email: string, password: string) {
+  login(email: string, password: string): Observable<AuthResponseData> {
     return this.http
       .post<AuthResponseData>(this.urlSingin, {
         email: email,
@@ -80,37 +80,47 @@ export class AuthService {
     const userData: {
       email: string;
       id: string;
-      _token: string;
-      _tokenExpirationDate: Date;
+      token: string;
+      expirationDate: Date;
     } = JSON.parse(localStorage.getItem('userData'));
 
     if (!userData) {
       return;
     }
-    const loadedUser = new User(
-      userData.email,
-      userData.id,
-      userData._token,
-      new Date(userData._tokenExpirationDate)
-    );
+    // const loadedUser = new User(
+    //   userData.email,
+    //   userData.id,
+    //   userData.token,
+    //   new Date(userData.expirationDate)
+    // );
+
+    const loadedUser: AuthActions.UserModel = {
+      email: userData.email,
+      userId: userData.id,
+      token: userData.token,
+      expirationDate: userData.expirationDate,
+      redirect: false,
+    };
 
     if (loadedUser.token) {
       // Rxjs
       // this.user.next(loadedUser);
 
       // Ngrx
-      this.store.dispatch(
-        new AuthActions.Login({
-          email: loadedUser.email,
-          userId: loadedUser.id,
-          token: loadedUser.token,
-          expirationDate: new Date(userData._tokenExpirationDate),
-        })
-      );
+
+      // this.store.dispatch(
+      //   new AuthActions.Login({
+      //     email: loadedUser.email,
+      //     userId: loadedUser.id,
+      //     token: loadedUser.token,
+      //     expirationDate: new Date(userData.expirationDate),
+      //   })
+      // );
+
+      this.store.dispatch(AuthActions.LoginStartActionSuccess(loadedUser));
 
       const expirationDuration =
-        new Date(userData._tokenExpirationDate).getTime() -
-        new Date().getTime();
+        new Date(userData.expirationDate).getTime() - new Date().getTime();
       this.autoLogout(expirationDuration);
     }
   }
@@ -120,7 +130,8 @@ export class AuthService {
     // this.user.next(null);
 
     // Ngrx
-    this.store.dispatch(new AuthActions.Logout());
+    // this.store.dispatch(new AuthActions.Logout());
+    this.store.dispatch(AuthActions.LogoutAction());
 
     this.router.navigate(['/auth']);
     localStorage.removeItem('userData');
@@ -135,6 +146,22 @@ export class AuthService {
     this.tokenExpirationtimer = setTimeout(() => {
       this.logout();
     }, expirationDuration);
+  }
+
+  setLogoutTimer(expirationDate: number) {
+    const expirationDuration =
+      new Date(expirationDate).getTime() - new Date().getTime();
+
+    this.tokenExpirationtimer = setTimeout(() => {
+      this.store.dispatch(AuthActions.LogoutAction());
+    }, expirationDuration);
+  }
+
+  clearLogoutTimer() {
+    if (this.tokenExpirationtimer) {
+      clearTimeout(this.tokenExpirationtimer);
+    }
+    this.tokenExpirationtimer = null;
   }
 
   private handleAuthentication(

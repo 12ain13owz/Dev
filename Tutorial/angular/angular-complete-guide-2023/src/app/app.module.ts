@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -62,9 +62,13 @@ import { LoggingService2 } from './logging.service';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { shoppingListReducer } from './shopping/shopping-list/store/shopping-list.reducer';
-import { authReducer } from './shopping/auth/store/auth.reducer';
+// import { authReducer } from './shopping/auth/store/auth.reducer';
 
 import * as fromApp from './store/app.reducer';
+import { AuthEffects } from './shopping/auth/store/auth.effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { RecipeEffects } from './shopping/recipes/store/recipe.effects';
 
 @NgModule({
   declarations: [
@@ -118,7 +122,9 @@ import * as fromApp from './store/app.reducer';
     SharedModule,
     CoreModule,
     StoreModule.forRoot(fromApp.appReducer),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([AuthEffects, RecipeEffects]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    // StoreRouterConnectingModule.forRoot(),
   ],
   providers: [
     AccountService,

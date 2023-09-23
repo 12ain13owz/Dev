@@ -24,7 +24,7 @@ export const authGuard: CanActivateFn = (route, state) => {
   // );
 
   // Ngrx
-  return store.select('auth').pipe(
+  return store.select('auth2').pipe(
     take(1),
     map((authState) => authState.user),
     map((user) => {

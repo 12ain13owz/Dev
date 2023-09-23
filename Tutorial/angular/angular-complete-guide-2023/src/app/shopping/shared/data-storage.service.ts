@@ -5,13 +5,17 @@ import { Observable, exhaustMap, map, take, tap } from 'rxjs';
 import { Recipe } from '../recipes/recipe.model';
 import { AuthService } from '../auth/auth.service';
 import { environment } from 'src/environments/environment.development';
+import { Store } from '@ngrx/store';
+import { AppState } from '../shopping-list/store/shopping-list.reducer';
+import { setRecipes } from '../recipes/store/recipe.actions';
 
 @Injectable({ providedIn: 'root' })
 export class DataStroageService {
   constructor(
     private http: HttpClient,
     private recipeSerice: RecipeService,
-    private authService: AuthService
+    private authService: AuthService,
+    private store: Store<AppState>
   ) {}
   private url: string = environment.apiUrl; // Firebase realtime database url
 
@@ -31,7 +35,11 @@ export class DataStroageService {
         }));
       }),
       tap((recipes: Recipe[]) => {
-        this.recipeSerice.setRecipes(recipes);
+        // Rxjs
+        // this.recipeSerice.setRecipes(recipes);
+
+        // Ngrx
+        this.store.dispatch(setRecipes({ recipes: recipes }));
       })
     );
 

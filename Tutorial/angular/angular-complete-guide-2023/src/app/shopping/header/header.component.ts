@@ -12,6 +12,8 @@ import { Subscription, map } from 'rxjs';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import * as fromApp from '../../store/app.reducer';
+import * as AuthActions from '../auth/store/auth.actions';
+import { fetchRecipes, storeRecipes } from '../recipes/store/recipe.actions';
 
 @Component({
   selector: 'app-header',
@@ -43,14 +45,20 @@ export class HeaderComponent implements OnInit, OnDestroy {
     // });
 
     // Ngrx
+    // this.userSub = this.store
+    //   .select('auth2')
+    //   .pipe(map((authState) => authState.user))
+    //   .subscribe((user) => {
+    //     this.isAuthenticated = !!user;
+    //     console.log('Ngrx', user);
+    //   });
+
+    // Ngrx
     this.userSub = this.store
-      .select('auth')
+      .select('auth2')
       .pipe(map((authState) => authState.user))
       .subscribe((user) => {
         this.isAuthenticated = !!user;
-        console.log('Ngrx', user);
-        console.log('Ngrx', !user);
-        console.log('Ngrx', !!user);
       });
   }
 
@@ -59,14 +67,21 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   onSaveData() {
-    this.dataStorageService.storeRecipes();
+    // Rxjs
+    // this.dataStorageService.storeRecipes();
+
+    // Ngrx
+    this.store.dispatch(storeRecipes());
   }
 
   onFetchData() {
-    this.dataStorageService.fetchRecipes().subscribe();
+    // Rxjs
+    // this.dataStorageService.fetchRecipes().subscribe();
+    this.store.dispatch(fetchRecipes());
   }
 
   onLogout() {
-    this.authService.logout();
+    this.store.dispatch(AuthActions.LogoutAction());
+    // this.authService.logout();
   }
 }

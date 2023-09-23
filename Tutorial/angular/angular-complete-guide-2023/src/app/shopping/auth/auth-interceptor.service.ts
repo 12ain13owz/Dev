@@ -36,7 +36,7 @@ export class AuthInterceptorService implements HttpInterceptor {
     // );
 
     // Ngrx
-    return this.store.select('auth').pipe(
+    return this.store.select('auth2').pipe(
       take(1),
       map((authState) => authState.user),
       exhaustMap((user) => {
