@@ -19,6 +19,7 @@ import { ShoppingListModule } from './shopping/shopping-list/shopping-list.modul
 import { AuthModule } from './shopping/auth/auth.module';
 import { StandAloneModule } from './stand-alone/stand-alone.module';
 import { SignalsComponent } from './signals/signals.component';
+import { UnivarsalModule } from './univarsal/univarsal.module';
 
 const routes: Routes = [
   // { path: '', component: HomeComponent },
@@ -28,10 +29,11 @@ const routes: Routes = [
   { path: 'signal', component: SignalsComponent },
 
   // { path: '', redirectTo: 'new', pathMatch: 'full' },
-  { path: '', redirectTo: '/recipes', pathMatch: 'full' },
+  // { path: '', redirectTo: '/recipes', pathMatch: 'full' },
   { path: 'recipes', loadChildren: () => RecipesModule },
   { path: 'shopping-list', loadChildren: () => ShoppingListModule },
   { path: 'auth', loadChildren: () => AuthModule },
+  { path: 'universal', loadChildren: () => UnivarsalModule },
 
   {
     path: 'users',
@@ -72,7 +74,10 @@ const routes: Routes = [
 @NgModule({
   // imports: [RouterModule.forRoot(routes, { useHash: true })],
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
+    RouterModule.forRoot(routes, {
+    preloadingStrategy: PreloadAllModules,
+    initialNavigation: 'enabledBlocking',
+}),
   ],
   exports: [RouterModule],
 })

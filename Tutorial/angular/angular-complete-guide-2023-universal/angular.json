@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-complete-guide-2023": {
+    "angular-complete-guide-2023-universal": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,16 +17,20 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-complete-guide-2023/browser",
+            "outputPath": "dist/angular-complete-guide-2023-universal/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": ["zone.js"],
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": ["src/favicon.ico", "src/assets"],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
             "styles": [
-              "src/styles.scss",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -52,13 +56,7 @@
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true,
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.development.ts"
-                }
-              ]
+              "namedChunks": true
             }
           },
           "defaultConfiguration": "production"
@@ -67,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "angular-complete-guide-2023:build:production"
+              "browserTarget": "angular-complete-guide-2023-universal:build:production"
             },
             "development": {
-              "browserTarget": "angular-complete-guide-2023:build:development"
+              "browserTarget": "angular-complete-guide-2023-universal:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -78,24 +76,32 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-complete-guide-2023:build"
+            "browserTarget": "angular-complete-guide-2023-universal:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": ["zone.js", "zone.js/testing"],
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
-            "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.scss"],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.scss"
+            ],
             "scripts": []
           }
         },
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "outputPath": "dist/angular-complete-guide-2023/server",
+            "outputPath": "dist/angular-complete-guide-2023-universal/server",
             "main": "server.ts",
             "tsConfig": "tsconfig.server.json",
             "inlineStyleLanguage": "scss"
@@ -106,12 +112,6 @@
             },
             "development": {
               "buildOptimizer": false,
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.development.ts"
-                }
-              ],
               "optimization": false,
               "sourceMap": true,
               "extractLicenses": false,
@@ -124,12 +124,12 @@
           "builder": "@nguniversal/builders:ssr-dev-server",
           "configurations": {
             "development": {
-              "browserTarget": "angular-complete-guide-2023:build:development",
-              "serverTarget": "angular-complete-guide-2023:server:development"
+              "browserTarget": "angular-complete-guide-2023-universal:build:development",
+              "serverTarget": "angular-complete-guide-2023-universal:server:development"
             },
             "production": {
-              "browserTarget": "angular-complete-guide-2023:build:production",
-              "serverTarget": "angular-complete-guide-2023:server:production"
+              "browserTarget": "angular-complete-guide-2023-universal:build:production",
+              "serverTarget": "angular-complete-guide-2023-universal:server:production"
             }
           },
           "defaultConfiguration": "development"
@@ -143,12 +143,12 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-complete-guide-2023:build:production",
-              "serverTarget": "angular-complete-guide-2023:server:production"
+              "browserTarget": "angular-complete-guide-2023-universal:build:production",
+              "serverTarget": "angular-complete-guide-2023-universal:server:production"
             },
             "development": {
-              "browserTarget": "angular-complete-guide-2023:build:development",
-              "serverTarget": "angular-complete-guide-2023:server:development"
+              "browserTarget": "angular-complete-guide-2023-universal:build:development",
+              "serverTarget": "angular-complete-guide-2023-universal:server:development"
             }
           },
           "defaultConfiguration": "production"
@@ -157,6 +157,6 @@
     }
   },
   "cli": {
-    "analytics": "e90a5e2b-1019-4802-a3ad-905ef0fce8f1"
+    "analytics": "a19c1424-f3dd-4b4a-af84-707c2ea3721c"
   }
 }
