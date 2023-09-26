@@ -37,6 +37,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     if (this.registerForm.invalid) return;
-    this.httpService.addAccount(this.registerForm.value);
+    this.httpService.createAccount(this.registerForm.value).subscribe();
   }
 }

@@ -25,12 +25,12 @@ export class StoreService {
     return this.account.find((account) => account.id === id);
   }
 
-  addAccount(account: Account) {
+  createAccount(account: Account) {
     this.account.push(account);
     this.accountChanged.next(this.account.slice());
   }
 
-  editAccount(account: Account) {
+  updateAccount(account: Account) {
     const id = account.id;
     const index = this.account.findIndex((account) => account.id === id);
 

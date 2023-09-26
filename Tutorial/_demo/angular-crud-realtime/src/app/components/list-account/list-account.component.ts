@@ -40,7 +40,7 @@ export class ListAccountComponent implements OnInit, OnDestroy {
           return;
         }
 
-        if (this.editMode) this.onEdit(this.storeService.getAccount(this.id));
+        if (this.editMode) this.onUpdate(this.storeService.getAccount(this.id));
       })
     );
   }
@@ -59,7 +59,7 @@ export class ListAccountComponent implements OnInit, OnDestroy {
     });
   }
 
-  onEdit(account: Account) {
+  onUpdate(account: Account) {
     this.editForm.reset();
     if (!account) return;
 
@@ -73,11 +73,11 @@ export class ListAccountComponent implements OnInit, OnDestroy {
   }
 
   onDelete(id: number) {
-    this.httpService.deleteAccount(id);
+    this.httpService.deleteAccount(id).subscribe();
   }
 
   onSubmit() {
     if (this.editForm.invalid) return;
-    this.httpService.editAccount(this.editForm.value);
+    this.httpService.updateAccount(this.editForm.value).subscribe();
   }
 }

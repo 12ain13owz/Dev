@@ -18,11 +18,11 @@ export class SocketIoService {
     if (!this.socket) return;
 
     this.socket.on('account:create', (account: Account) => {
-      this.storeService.addAccount(account);
+      this.storeService.createAccount(account);
     });
 
     this.socket.on('account:update', (account: Account) => {
-      this.storeService.editAccount(account);
+      this.storeService.updateAccount(account);
     });
 
     this.socket.on('account:delete', (id: number) => {
