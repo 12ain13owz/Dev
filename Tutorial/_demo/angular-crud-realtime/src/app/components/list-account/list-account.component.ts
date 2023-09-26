@@ -39,6 +39,7 @@ export class ListAccountComponent implements OnInit, OnDestroy {
           this.router.navigate(['/list']);
           return;
         }
+
         if (this.editMode) this.onEdit(this.storeService.getAccount(this.id));
       })
     );
@@ -59,6 +60,9 @@ export class ListAccountComponent implements OnInit, OnDestroy {
   }
 
   onEdit(account: Account) {
+    this.editForm.reset();
+    if (!account) return;
+
     this.editForm.setValue({
       id: account.id,
       username: account.username,
