@@ -34,7 +34,6 @@ export class ListAccountComponent implements OnInit, OnDestroy {
     this.subscription.add(
       this.storeService.accountChanged.subscribe((account: Account[]) => {
         this.account = account;
-        console.log(1);
 
         if (this.account.length <= 0) {
           this.router.navigate(['/list']);
