@@ -12,24 +12,21 @@ const io = require("socket.io")(server, {
   cors: { origin: config.origin },
 });
 const port = process.env.PORT || config.port;
+const connect = require("./listeners/connect.listeners");
+const account = require("./listeners/account.listeners");
+
+const onConnect = (socket) => {
+  connect(io, socket);
+  account(io, socket);
+};
 
 app.use(cors({ origin: config.origin }));
 app.use(logger("dev"));
 app.use(express.json());
 app.use("/api", router);
-app.set("io", io);
 
 model.sequelize.sync().then(() => {
-  io.on("connection", async (socket) => {
-    console.log("user connected");
-
-    socket.on("disconnect", () => {
-      console.log("user disconnected");
-    });
-
-    const count = io.engine.clientsCount;
-    console.log("Clients count: " + count);
-  });
+  io.on("connection", onConnect);
 
   server.listen(port, () => {
     console.log(`Server is running on port ${port}`);

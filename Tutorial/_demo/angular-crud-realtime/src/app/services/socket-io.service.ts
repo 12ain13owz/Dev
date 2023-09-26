@@ -15,10 +15,34 @@ export class SocketIoService {
     this.socket = io(this.url, {
       reconnection: false,
     });
+    if (!this.socket) return;
 
-    this.socket.on('addData', (account: Account) => {
+    this.socket.on('account:create', (account: Account) => {
       this.storeService.addAccount(account);
     });
+
+    this.socket.on('account:update', (account: Account) => {
+      this.storeService.editAccount(account);
+    });
+
+    this.socket.on('account:delete', (id: number) => {
+      this.storeService.deleteAccount(id);
+    });
+  }
+
+  createAccount(account: Account) {
+    if (!this.socket) return;
+    this.socket.emit('account:create', account);
+  }
+
+  updateAccount(account: Account) {
+    if (!this.socket) return;
+    this.socket.emit('account:update', account);
+  }
+
+  deleteAccount(id: number) {
+    if (!this.socket) return;
+    this.socket.emit('account:delete', id);
   }
 
   onDisconnect() {

@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WelcomeComponent } from './welcome.component';
+import { AnimationComponent } from './animation.component';
 
-describe('WelcomeComponent', () => {
-  let component: WelcomeComponent;
-  let fixture: ComponentFixture<WelcomeComponent>;
+describe('AnimationComponent', () => {
+  let component: AnimationComponent;
+  let fixture: ComponentFixture<AnimationComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [WelcomeComponent]
+      declarations: [AnimationComponent]
     });
-    fixture = TestBed.createComponent(WelcomeComponent);
+    fixture = TestBed.createComponent(AnimationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

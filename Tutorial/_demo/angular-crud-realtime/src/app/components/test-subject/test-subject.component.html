@@ -1,0 +1,8 @@
+<button class="btn" (click)="onClick()">Test</button>
+<div class="wrapper" style="gap: 5px">
+  <h2>List Account</h2>
+  <ng-container *ngFor="let acc of account; let i = index">
+    <div>{{ acc.username }} | {{ acc.firstname }} | {{ acc.lastname }}</div>
+    <hr style="width: 100%; border-color: deeppink" />
+  </ng-container>
+</div>

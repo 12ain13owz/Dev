@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
       lastname: new FormControl(null, [Validators.required]),
     });
 
-    this.account = this.storeService.getAccount();
+    this.account = this.storeService.getAccounts();
     this.subscription = this.storeService.accountChanged.subscribe(
       (account: Account[]) => (this.account = account)
     );

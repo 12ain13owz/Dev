@@ -16,12 +16,35 @@ const getAccount = async (req, res) => {
 const addAccount = async (req, res) => {
   try {
     const result = await model.account.create(req.body);
-    const io = req.app.get("io");
-
-    io.emit("addData", result.dataValues);
-    res.status(200).send({ message: "Add Success" });
+    res.status(200).send({ meaage: "Add Success", result });
   } catch (error) {
     console.log("Error addAccount: ", error.message);
+    res.status(500).send({ message: "Error" });
+  }
+};
+
+const editAccount = async (req, res) => {
+  try {
+    const body = req.body;
+    await model.account.update(body, {
+      where: { id: req.body.id },
+    });
+    res.status(200).send({ message: "Update Success", result: body });
+  } catch (error) {
+    console.log("Error editAccount: ", error.message);
+    res.status(500).send({ message: "Error" });
+  }
+};
+
+const deleteAccount = async (req, res) => {
+  try {
+    const id = req.params.id;
+    await model.account.destroy({
+      where: { id: id },
+    });
+    res.status(200).send({ message: "Delete Success", id: id });
+  } catch (error) {
+    console.log("Error deleteAccount: ", error.message);
     res.status(500).send({ message: "Error" });
   }
 };
@@ -29,4 +52,6 @@ const addAccount = async (req, res) => {
 module.exports = {
   getAccount,
   addAccount,
+  editAccount,
+  deleteAccount,
 };

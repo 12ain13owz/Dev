@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap } from 'rxjs';
+import { map, tap } from 'rxjs';
 import { Account } from './account.model';
 import { StoreService } from './store.service';
 import { SocketIoService } from './socket-io.service';
@@ -30,6 +30,32 @@ export class HttpService {
   }
 
   addAccount(account: Account) {
-    return this.http.post<Account[]>(this.url, account).subscribe();
+    return this.http
+      .post(this.url, account)
+      .pipe(map((response: any) => response.result))
+      .subscribe((account: Account) => {
+        this.storeService.addAccount(account);
+        this.socketService.createAccount(account);
+      });
+  }
+
+  editAccount(account: Account) {
+    return this.http
+      .put(this.url, account)
+      .pipe(map((response: any) => response.result))
+      .subscribe((account: Account) => {
+        this.storeService.editAccount(account);
+        this.socketService.updateAccount(account);
+      });
+  }
+
+  deleteAccount(id: number) {
+    return this.http
+      .delete(`${this.url}/${id}`)
+      .pipe(map((response: any) => response.id))
+      .subscribe((id: number) => {
+        this.storeService.deleteAccount(id);
+        this.socketService.deleteAccount(id);
+      });
   }
 }

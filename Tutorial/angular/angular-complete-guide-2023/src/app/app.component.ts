@@ -1,7 +1,7 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { AccountService } from './using-services/account.service';
 import { ObsUserService } from './observables/obs-user.service';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, Subject, Subscription } from 'rxjs';
 import { AuthService } from './shopping/auth/auth.service';
 import { LoggingService2 } from './logging.service';
 import { Store } from '@ngrx/store';
@@ -96,6 +96,9 @@ export class AppComponent implements OnInit {
     private store: Store<fromApp.AppState>
   ) {}
 
+  mySubject = new Subject();
+  myBehaviorSubject = new BehaviorSubject(0);
+
   ngOnInit(): void {
     // Rxjs
     // this.authService.autoLogin();
@@ -103,6 +106,22 @@ export class AppComponent implements OnInit {
     // Ngrx
     this.store.dispatch(AuthActions.AutoLoginAction());
     this.loggingService.printLog('Hello from AppComponent');
+
+    this.mySubject.subscribe((value) => {
+      console.log('Subject', value);
+    });
+
+    // Test Subject
+    // this.mySubject.next(1);
+    // this.mySubject.subscribe((data) => console.log(data));
+    // this.mySubject.next(2);
+    // this.mySubject.next(3);
+
+    // Test BehaviorSubject
+    // this.myBehaviorSubject.next(1);
+    // this.myBehaviorSubject.subscribe((data) => console.log(data));
+    // this.myBehaviorSubject.next(2);
+    // this.myBehaviorSubject.next(3);
   }
 
   // Practice Lesson 9
