@@ -2,14 +2,19 @@
   <div class="row">
     <div class="col-xs-12">
       <h1>Animations</h1>
-      <button class="btn btn-primary">Animate!</button>
-      <button class="btn btn-primary">Shrink!</button>
+      <div style="display: flex; gap: 8px">
+        <button class="btn btn-primary" (click)="onAnimate()">Animate!</button>
+        <button class="btn btn-primary" (click)="onShrink()">Shrink!</button>
+      </div>
       <hr />
       <div
-        (click)="onclick()"
         style="width: 100px; height: 100px"
         [@divState]="state"
+        (@divState.start)="animationStarted($event)"
+        (@divState.done)="animationEnded($event)"
       ></div>
+      <hr />
+      <div style="width: 100px; height: 100px" [@wideState]="wildState"></div>
     </div>
   </div>
   <hr />
@@ -23,6 +28,7 @@
       <ul class="list-group">
         <li
           class="list-group-item"
+          [@list1]
           (click)="onDelete(item)"
           *ngFor="let item of list"
         >
@@ -38,6 +44,7 @@
         <li
           class="list-group-item"
           (click)="onDelete(item)"
+          [@list2]="'in'"
           *ngFor="let item of list"
         >
           {{ item }}
