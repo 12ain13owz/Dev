@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainServerModule } from './server/main-server.module';
 import { ProjectModule } from './project/project.module';
+import { DataBindingModule } from './data-binding/data-binding.module';
 
 const routes: Routes = [
   { path: '', redirectTo: 'project', pathMatch: 'full' },
 
-  { path: 'server', loadChildren: () => MainServerModule },
   { path: 'project', loadChildren: () => ProjectModule },
+  { path: 'server', loadChildren: () => MainServerModule },
+  { path: 'binding', loadChildren: () => DataBindingModule },
 ];
 
 @NgModule({
