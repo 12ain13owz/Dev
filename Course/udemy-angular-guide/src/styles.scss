@@ -6,12 +6,23 @@ body {
   box-sizing: border-box;
 }
 
-.box {
+.box-row {
+  display: flex;
+  gap: 8px;
+}
+
+.box-column {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 
   .f-start {
     align-self: flex-start;
+  }
+}
+
+.a-cursor {
+  a {
+    cursor: pointer;
   }
 }
