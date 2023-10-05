@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
 import { ProjectComponent } from './project.component';
 import { ProjectRoutingModule } from './project-routing.module';
+
 import { HeaderComponent } from './header/header.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component';
@@ -21,6 +24,6 @@ import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-ed
     ShoppingListComponent,
     ShoppingEditComponent,
   ],
-  imports: [CommonModule, ProjectRoutingModule],
+  imports: [CommonModule, ProjectRoutingModule, FormsModule],
 })
 export class ProjectModule {}
