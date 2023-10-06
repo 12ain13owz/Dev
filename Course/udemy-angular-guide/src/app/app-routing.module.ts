@@ -4,6 +4,7 @@ import { MainServerModule } from './server/main-server.module';
 import { ProjectModule } from './project/project.module';
 import { DataBindingModule } from './data-binding/data-binding.module';
 import { DirectiveModule } from './directive/directive.module';
+import { ServicesModule } from './services/services.module';
 
 const routes: Routes = [
   { path: '', redirectTo: 'project', pathMatch: 'full' },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'server', loadChildren: () => MainServerModule },
   { path: 'binding', loadChildren: () => DataBindingModule },
   { path: 'directive', loadChildren: () => DirectiveModule },
+  { path: 'services', loadChildren: () => ServicesModule },
 ];
 
 @NgModule({
