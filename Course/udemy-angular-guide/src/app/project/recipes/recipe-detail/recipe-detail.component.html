@@ -23,9 +23,10 @@
       </button>
       <ul class="dropdown-menu">
         <li>
-          <a (click)="onAddToShoppingList()"> ShoppingList </a>
+          <a (click)="onAddToShoppingList()">To Shopping List</a>
         </li>
-        <li><a>Edit Recipt</a></li>
+        <li><a (click)="onEditRecipe()">Edit Recipt (Fucntion)</a></li>
+        <li><a routerLink="edit">Edit Recipt (RouterLink)</a></li>
         <li><a>Delete Recipt</a></li>
       </ul>
     </div>

@@ -8,7 +8,7 @@ import { ServicesModule } from './services/services.module';
 import { RoutingStartModule } from './routing-start/routing-start.module';
 
 const routes: Routes = [
-  // { path: '', redirectTo: 'project', pathMatch: 'full' },
+  { path: '', redirectTo: 'project', pathMatch: 'full' },
 
   { path: 'project', loadChildren: () => ProjectModule },
   { path: 'server', loadChildren: () => MainServerModule },
@@ -16,6 +16,8 @@ const routes: Routes = [
   { path: 'directive', loadChildren: () => DirectiveModule },
   { path: 'services', loadChildren: () => ServicesModule },
   { path: 'routing', loadChildren: () => RoutingStartModule },
+
+  { path: '**', redirectTo: 'project', pathMatch: 'full' },
 ];
 
 @NgModule({
