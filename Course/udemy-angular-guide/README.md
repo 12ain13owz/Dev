@@ -1,3 +1,15 @@
+# Getting started
+
+ng generate environments
+
+- config environment.development
+
+```
+export const environment = {
+  apiUrl: '' // Firebase realtime database url
+};
+```
+
 # UdemyAngularGuide
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.3.
