@@ -1,6 +1,8 @@
 # Getting started
 
+```
 ng generate environments
+```
 
 - config environment.development
 
