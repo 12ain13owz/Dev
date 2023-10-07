@@ -6,6 +6,12 @@ body {
   box-sizing: border-box;
 }
 
+router-outlet + * {
+  a {
+    cursor: pointer;
+  }
+}
+
 .box-row {
   display: flex;
   gap: 8px;
@@ -18,11 +24,5 @@ body {
 
   .f-start {
     align-self: flex-start;
-  }
-}
-
-.a-cursor {
-  a {
-    cursor: pointer;
   }
 }
