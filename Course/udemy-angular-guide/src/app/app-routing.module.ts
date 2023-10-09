@@ -7,6 +7,7 @@ import { DirectiveModule } from './directive/directive.module';
 import { ServicesModule } from './services/services.module';
 import { RoutingStartModule } from './routing-start/routing-start.module';
 import { ObservablesModule } from './observables/observables.module';
+import { FormHandlingModule } from './form-handling/form-handling.module';
 
 const routes: Routes = [
   { path: '', redirectTo: 'project', pathMatch: 'full' },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'services', loadChildren: () => ServicesModule },
   { path: 'routing', loadChildren: () => RoutingStartModule },
   { path: 'observables', loadChildren: () => ObservablesModule },
+  { path: 'form', loadChildren: () => FormHandlingModule },
 
   { path: '**', redirectTo: 'project', pathMatch: 'full' },
 ];
