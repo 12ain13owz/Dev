@@ -63,10 +63,9 @@ export class FormReactiveComponent implements OnInit {
   }
 
   onAddHobby() {
-    this.signupForm.get('hobbies');
-
     const control = new FormControl(null, Validators.required);
-    (<FormArray>this.signupForm.get('hobbies')).push(control);
+    this.hobbies.push(control);
+    // (<FormArray>this.signupForm.get('hobbies')).push(control);
   }
 
   get hobbies() {

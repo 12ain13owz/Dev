@@ -27,7 +27,7 @@
         </li>
         <li><a (click)="onEditRecipe()">Edit Recipt (Fucntion)</a></li>
         <li><a routerLink="edit">Edit Recipt (RouterLink)</a></li>
-        <li><a>Delete Recipt</a></li>
+        <li><a (click)="onDeleteRecipe()">Delete Recipt</a></li>
       </ul>
     </div>
   </div>
@@ -39,7 +39,7 @@
 <div class="row">
   <div class="col-xs-12">
     <ul class="list-group">
-      <li class="list-group-item" *ngFor="let ingredient of recipe.ingredient">
+      <li class="list-group-item" *ngFor="let ingredient of recipe.ingredients">
         {{ ingredient.name }} - {{ ingredient.amount }}
       </li>
     </ul>

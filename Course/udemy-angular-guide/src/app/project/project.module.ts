@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ProjectComponent } from './project.component';
 import { ProjectRoutingModule } from './project-routing.module';
@@ -30,6 +30,11 @@ import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component
     RecipesStartComponent,
     RecipeEditComponent,
   ],
-  imports: [CommonModule, ProjectRoutingModule, FormsModule],
+  imports: [
+    CommonModule,
+    ProjectRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
 })
 export class ProjectModule {}
