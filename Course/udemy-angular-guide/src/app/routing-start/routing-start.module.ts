@@ -13,6 +13,8 @@ import { EditServerComponent } from './servers/edit-server/edit-server.component
 import { UserComponent } from './users/user/user.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
+import { AuthService } from './auth.service';
+import { ServersService } from './servers/servers.service';
 
 @NgModule({
   declarations: [
@@ -27,5 +29,6 @@ import { ErrorPageComponent } from './error-page/error-page.component';
     ErrorPageComponent,
   ],
   imports: [CommonModule, RoutingRoutesModule, FormsModule],
+  providers: [AuthService, ServersService],
 })
 export class RoutingStartModule {}
