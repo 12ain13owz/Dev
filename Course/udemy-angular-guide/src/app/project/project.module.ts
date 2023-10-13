@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { ProjectComponent } from './project.component';
 import { ProjectRoutingModule } from './project-routing.module';
@@ -15,6 +16,7 @@ import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-ed
 import { DropdownDirective } from './shared/dropdown.directive';
 import { RecipesStartComponent } from './recipes/recipes-start/recipes-start.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
+import { DataStorageService } from './shared/data-storage.service';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component
     ProjectRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
+  providers: [DataStorageService],
 })
 export class ProjectModule {}
