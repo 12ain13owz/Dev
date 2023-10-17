@@ -24,6 +24,8 @@ import { AuthService } from './auth/auth.service';
 import { LoadingComponent } from './shared/loading/loading.component';
 import { AuthInterceptorProviders } from './auth/auth.interceptor';
 import { authGuard } from './auth/auth.guard';
+import { AlertComponent } from './shared/alert/alert.component';
+import { PlaceholderDirective } from './shared/placeholder.directive';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { authGuard } from './auth/auth.guard';
     RecipeEditComponent,
     AuthComponent,
     LoadingComponent,
+    AlertComponent,
+    PlaceholderDirective,
   ],
   imports: [
     CommonModule,

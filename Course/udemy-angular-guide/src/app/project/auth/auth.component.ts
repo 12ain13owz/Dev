@@ -1,15 +1,21 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthRespnseData, AuthService } from './auth.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AlertComponent } from '../shared/alert/alert.component';
+import { PlaceholderDirective } from '../shared/placeholder.directive';
 
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss'],
 })
-export class AuthComponent {
+export class AuthComponent implements OnDestroy {
+  @ViewChild(PlaceholderDirective, { static: true })
+  placeholder: PlaceholderDirective;
+
+  private subscription: Subscription;
   email: string = 'test@example.com';
   password: string = '123456';
 
@@ -22,6 +28,10 @@ export class AuthComponent {
     private router: Router,
     private route: ActivatedRoute
   ) {}
+
+  ngOnDestroy(): void {
+    if (this.subscription) this.subscription.unsubscribe();
+  }
 
   onSwitchMode() {
     this.isLoginMode = !this.isLoginMode;
@@ -49,9 +59,25 @@ export class AuthComponent {
         console.log(errMessage);
         this.error = errMessage;
         this.isLoading = false;
+        this.showErrorAlert(errMessage);
       },
       complete: () => console.log('%cComplete', 'color:#f9e64f'),
     });
     form.resetForm();
+  }
+
+  onHandlerError() {
+    this.error = null;
+  }
+
+  private showErrorAlert(errMessage: string) {
+    const component =
+      this.placeholder.viewContainerRef.createComponent(AlertComponent);
+
+    component.instance.message = errMessage;
+    this.subscription = component.instance.close.subscribe(() => {
+      this.subscription.unsubscribe();
+      component.destroy();
+    });
   }
 }

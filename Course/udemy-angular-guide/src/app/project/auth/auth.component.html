@@ -1,6 +1,12 @@
+<ng-template appPlaceholder></ng-template>
 <div class="row">
   <div class="col-xs-12 col-md-6 col-md-offset-3">
-    <div class="alert alert-danger" *ngIf="error">{{ error }}</div>
+    <!-- <div class="alert alert-danger" *ngIf="error">{{ error }}</div> -->
+    <!-- <app-alert
+      *ngIf="error"
+      [message]="error"
+      (close)="onHandlerError()"
+    ></app-alert> -->
     <ng-container *ngIf="isLoading; else form">
       <div style="text-align: center">
         <app-loading></app-loading>
