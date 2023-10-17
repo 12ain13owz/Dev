@@ -9,7 +9,7 @@
         <span class="icon-bar" *ngFor="let iconBar of [1, 2, 3]"></span>
       </button>
 
-      <a class="navbar-brand">Recipe Book</a>
+      <a class="navbar-brand" routerLink="recipes">Recipe Book</a>
     </div>
 
     <div
@@ -18,20 +18,32 @@
       (window:resize)="collapsed = true"
     >
       <ul class="nav navbar-nav">
-        <li routerLinkActive="active"><a routerLink="recipes">Recipes</a></li>
-        <li routerLinkActive="active">
-          <a routerLink="shopping-list">Shopping List</a>
-        </li>
+        <ng-container *ngIf="isAuthenticated; else login">
+          <li routerLinkActive="active"><a routerLink="recipes">Recipes</a></li>
+          <li routerLinkActive="active">
+            <a routerLink="shopping-list">Shopping List</a>
+          </li>
+        </ng-container>
+
+        <ng-template #login>
+          <li routerLinkActive="active">
+            <a routerLink="auth">Authenticate</a>
+          </li>
+        </ng-template>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown" appDropdown>
+        <li>
+          <a *ngIf="isAuthenticated" (click)="onSignOut()">Sign out</a>
+        </li>
+
+        <!-- <li class="dropdown" appDropdown>
           <a class="dropdown-toggle">Manage <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a (click)="onSaveData()">Save Data</a></li>
             <li><a (click)="onFetchData()">Fetch Data</a></li>
           </ul>
-        </li>
+        </li> -->
 
         <li><a (click)="onSaveData()">Save Data</a></li>
         <li><a (click)="onFetchData()">Fetch Data</a></li>

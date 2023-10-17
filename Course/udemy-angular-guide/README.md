@@ -5,10 +5,14 @@ ng generate environments
 ```
 
 - config environment.development
+  (https://firebase.google.com/docs/reference/rest/auth#section-create-email-password)
 
 ```
 export const environment = {
-  apiUrl: '' // Firebase realtime database url
+  apiKey: '[API_KEY]',// Project settings
+  apiUrl: '[URL]', // Firebase realtime database url
+  signUpEndpoint: '[Endpoint]', // Sign up with email / password
+  signInEndpoint: '[Endpoint]', // Sign in with email / password
 };
 ```
 

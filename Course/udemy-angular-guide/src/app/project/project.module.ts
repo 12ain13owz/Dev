@@ -17,6 +17,13 @@ import { DropdownDirective } from './shared/dropdown.directive';
 import { RecipesStartComponent } from './recipes/recipes-start/recipes-start.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { DataStorageService } from './shared/data-storage.service';
+import { AuthComponent } from './auth/auth.component';
+import { RecipeService } from './recipes/recipe.service';
+import { ShoppingListService } from './shopping-list/shopping-list.service';
+import { AuthService } from './auth/auth.service';
+import { LoadingComponent } from './shared/loading/loading.component';
+import { AuthInterceptorProviders } from './auth/auth.interceptor';
+import { authGuard } from './auth/auth.guard';
 
 @NgModule({
   declarations: [
@@ -31,6 +38,8 @@ import { DataStorageService } from './shared/data-storage.service';
     DropdownDirective,
     RecipesStartComponent,
     RecipeEditComponent,
+    AuthComponent,
+    LoadingComponent,
   ],
   imports: [
     CommonModule,
@@ -39,6 +48,12 @@ import { DataStorageService } from './shared/data-storage.service';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [DataStorageService],
+  providers: [
+    RecipeService,
+    ShoppingListService,
+    DataStorageService,
+    AuthService,
+    AuthInterceptorProviders,
+  ],
 })
 export class ProjectModule {}
