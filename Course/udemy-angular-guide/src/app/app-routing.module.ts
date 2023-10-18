@@ -11,6 +11,7 @@ import { FormHandlingModule } from './form-handling/form-handling.module';
 import { PipesModule } from './pipes/pipes.module';
 import { HttpRequestModule } from './http-request/http-request.module';
 import { StandAloneModule } from './stand-alone/stand-alone.module';
+import { SignalModule } from './signal/signal.module';
 
 const routes: Routes = [
   { path: '', redirectTo: 'project', pathMatch: 'full' },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'pipes', loadChildren: () => PipesModule },
   { path: 'http', loadChildren: () => HttpRequestModule },
   { path: 'alone', loadChildren: () => StandAloneModule },
+  { path: 'signal', loadChildren: () => SignalModule },
 
   { path: '**', redirectTo: 'project', pathMatch: 'full' },
 ];
