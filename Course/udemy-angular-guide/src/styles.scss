@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
-body {
+html {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -24,5 +24,31 @@ router-outlet + * {
 
   .f-start {
     align-self: flex-start;
+  }
+}
+
+.stand-alone {
+  height: 100dvh;
+  width: 100dvw;
+  padding: 2rem;
+
+  background-color: #323131;
+  color: #f5f3f3;
+  font-family: sans-serif;
+  text-align: center;
+
+  main {
+    max-width: 50rem;
+    margin: 0 auto;
+  }
+
+  a {
+    text-decoration: none;
+    color: #b499f9;
+    font-weight: bold;
+  }
+
+  a:hover {
+    color: #a382f7;
   }
 }

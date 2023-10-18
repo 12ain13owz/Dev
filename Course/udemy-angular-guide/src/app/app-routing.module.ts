@@ -10,6 +10,7 @@ import { ObservablesModule } from './observables/observables.module';
 import { FormHandlingModule } from './form-handling/form-handling.module';
 import { PipesModule } from './pipes/pipes.module';
 import { HttpRequestModule } from './http-request/http-request.module';
+import { StandAloneModule } from './stand-alone/stand-alone.module';
 
 const routes: Routes = [
   { path: '', redirectTo: 'project', pathMatch: 'full' },
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'form', loadChildren: () => FormHandlingModule },
   { path: 'pipes', loadChildren: () => PipesModule },
   { path: 'http', loadChildren: () => HttpRequestModule },
+  { path: 'alone', loadChildren: () => StandAloneModule },
 
   { path: '**', redirectTo: 'project', pathMatch: 'full' },
 ];
