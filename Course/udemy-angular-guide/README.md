@@ -9,10 +9,10 @@ ng generate environments
 
 ```
 export const environment = {
-  apiKey: '[API_KEY]',// Project settings
-  apiUrl: '[URL]', // Firebase realtime database url
-  signUpEndpoint: '[Endpoint]', // Sign up with email / password
-  signInEndpoint: '[Endpoint]', // Sign in with email / password
+  firebaseAPIKey: '[API_KEY]',// Project settings
+  firebaseAPIUrl: '[URL]', // Firebase realtime database url
+  firebaseSignUpEndpoint: '[Endpoint]', // Sign up with email / password
+  firebasesignInEndpoint: '[Endpoint]', // Sign in with email / password
 };
 ```
 

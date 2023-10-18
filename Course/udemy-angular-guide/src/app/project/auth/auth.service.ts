@@ -17,8 +17,10 @@ export interface AuthRespnseData {
 
 @Injectable()
 export class AuthService {
-  private signUpEndpoint = environment.signUpEndpoint + environment.apiKey;
-  private signInEndpoint = environment.signInEndpoint + environment.apiKey;
+  private firebaseSignUpEndpoint =
+    environment.firebaseSignUpEndpoint + environment.firebaseAPIKey;
+  private firebasesignInEndpoint =
+    environment.firebasesignInEndpoint + environment.firebaseAPIKey;
   private tokenExpirationTimer: ReturnType<typeof setTimeout>;
   user = new BehaviorSubject<UserModel>(null);
 
@@ -26,7 +28,7 @@ export class AuthService {
 
   signup(email: string, password: string): Observable<AuthRespnseData> {
     return this.http
-      .post<AuthRespnseData>(this.signUpEndpoint, {
+      .post<AuthRespnseData>(this.firebaseSignUpEndpoint, {
         email: email,
         password: password,
         returnSecureToken: true,
@@ -46,7 +48,7 @@ export class AuthService {
 
   signin(email: string, password: string): Observable<AuthRespnseData> {
     return this.http
-      .post<AuthRespnseData>(this.signInEndpoint, {
+      .post<AuthRespnseData>(this.firebasesignInEndpoint, {
         email: email,
         password: password,
         returnSecureToken: true,

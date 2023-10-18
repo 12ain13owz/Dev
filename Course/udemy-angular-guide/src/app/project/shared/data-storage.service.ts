@@ -4,10 +4,11 @@ import { Recipe } from './recipe.model';
 import { RecipeService } from '../recipes/recipe.service';
 import { environment } from 'src/environments/environment.development';
 import { catchError, map, tap, throwError } from 'rxjs';
+import { SharedModule } from './shared.module';
 
 @Injectable()
 export class DataStorageService {
-  private apiUrl = environment.apiUrl;
+  private firebaseAPIUrl = environment.firebaseAPIUrl;
   private dbName = 'recipes.json';
 
   constructor(private http: HttpClient, private recipeService: RecipeService) {}
@@ -15,14 +16,14 @@ export class DataStorageService {
   storeRecipes() {
     const recipes: Recipe[] = this.recipeService.getRecipes();
     return this.http
-      .put(this.apiUrl + this.dbName, recipes)
+      .put(this.firebaseAPIUrl + this.dbName, recipes)
       .subscribe((response) => {
         console.log(response);
       });
   }
 
   fetchRecipes() {
-    return this.http.get<Recipe[]>(this.apiUrl + this.dbName).pipe(
+    return this.http.get<Recipe[]>(this.firebaseAPIUrl + this.dbName).pipe(
       catchError((errRes) => throwError(() => errRes)),
       map((recipes) => {
         if (recipes === null) return [];

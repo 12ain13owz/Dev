@@ -11,14 +11,14 @@ import { Subject, catchError, map, tap, throwError } from 'rxjs';
 
 @Injectable()
 export class PostsService {
-  private apiUrl = environment.apiUrl;
+  private firebaseAPIUrl = environment.firebaseAPIUrl;
   error = new Subject<string>();
   constructor(private http: HttpClient) {}
 
   createAndStorePost(title: string, content: string) {
     const postData: Post = { title: title, content: content };
     this.http
-      .post<{ name: string }>(this.apiUrl + 'posts.json', postData, {
+      .post<{ name: string }>(this.firebaseAPIUrl + 'posts.json', postData, {
         observe: 'response',
       })
       .subscribe(
@@ -37,7 +37,7 @@ export class PostsService {
     searchParams = searchParams.append('custom', 'key');
 
     return this.http
-      .get<{ [key: string]: Post }>(this.apiUrl + 'posts.json', {
+      .get<{ [key: string]: Post }>(this.firebaseAPIUrl + 'posts.json', {
         headers: new HttpHeaders({
           'Custom-Header': 'Hello',
         }),
@@ -61,7 +61,7 @@ export class PostsService {
 
   deletePosts() {
     return this.http
-      .delete(this.apiUrl + 'posts.json', {
+      .delete(this.firebaseAPIUrl + 'posts.json', {
         observe: 'events',
         responseType: 'text',
       })
