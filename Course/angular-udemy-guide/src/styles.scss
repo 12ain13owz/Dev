@@ -108,3 +108,10 @@ router-outlet + * {
     gap: 1rem;
   }
 }
+
+.ngrx {
+  min-height: 100dvh;
+  max-width: 100dvw;
+  background-color: #333;
+  color: #dedede;
+}

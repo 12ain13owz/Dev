@@ -12,6 +12,7 @@ import { PipesModule } from './pipes/pipes.module';
 import { HttpRequestModule } from './http-request/http-request.module';
 import { StandAloneModule } from './stand-alone/stand-alone.module';
 import { SignalModule } from './signal/signal.module';
+import { NgrxModule } from './ngrx/ngrx.module';
 
 const routes: Routes = [
   { path: '', redirectTo: 'project', pathMatch: 'full' },
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'http', loadChildren: () => HttpRequestModule },
   { path: 'alone', loadChildren: () => StandAloneModule },
   { path: 'signal', loadChildren: () => SignalModule },
+  { path: 'ngrx', loadChildren: () => NgrxModule },
 
   { path: '**', redirectTo: 'project', pathMatch: 'full' },
 ];
