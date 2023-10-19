@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { MainServerModule } from './server/main-server.module';
 import { ProjectModule } from './project/project.module';
+
+import { MainServerModule } from './server/main-server.module';
 import { DataBindingModule } from './data-binding/data-binding.module';
 import { DirectiveModule } from './directive/directive.module';
 import { ServicesModule } from './services/services.module';

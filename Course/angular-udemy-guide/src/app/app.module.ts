@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -8,6 +8,7 @@ import { StoreModule } from '@ngrx/store';
 import { counterReducer } from './ngrx/store/counter.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { CounterEffects } from './ngrx/store/counter.effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,6 +18,7 @@ import { CounterEffects } from './ngrx/store/counter.effects';
     ReactiveFormsModule,
     StoreModule.forRoot({ counter: counterReducer }, {}),
     EffectsModule.forRoot([CounterEffects]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
   ],
   bootstrap: [AppComponent],
 })
