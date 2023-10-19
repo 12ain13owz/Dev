@@ -15,6 +15,7 @@ import { StandAloneModule } from './stand-alone/stand-alone.module';
 import { SignalModule } from './signal/signal.module';
 import { NgrxModule } from './ngrx/ngrx.module';
 import { AnimationsModule } from './animations/animations.module';
+import { UnitTestModule } from './unit-test/unit-test.module';
 
 const routes: Routes = [
   { path: '', redirectTo: 'project', pathMatch: 'full' },
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: 'signal', loadChildren: () => SignalModule },
   { path: 'ngrx', loadChildren: () => NgrxModule },
   { path: 'animations', loadChildren: () => AnimationsModule },
+  { path: 'test', loadChildren: () => UnitTestModule },
 
   { path: '**', redirectTo: 'project', pathMatch: 'full' },
 ];
