@@ -12,7 +12,7 @@ import {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'udemy-angular-guide';
+  title = 'angular-udemy-guide';
   name: string = 'Dryst';
 
   // ตัวอย่างกำหนด Strictly Typed ของ Reactive form ใน angular
