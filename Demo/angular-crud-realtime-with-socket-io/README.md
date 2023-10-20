@@ -20,6 +20,7 @@ npm install
 ```
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli)
+Navigate to default `http://localhost:4200/`
 
 ## NodeJS
 
@@ -53,4 +54,4 @@ npm install
 npm start
 ```
 
-Navigate to default `http://localhost:3000`
+Navigate to default `http://localhost:3000/`
