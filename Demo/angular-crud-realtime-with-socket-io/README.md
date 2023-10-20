@@ -14,8 +14,9 @@
 
 - Install dependencies
 
-```
 cd <project_name>
+
+```
 npm install
 ```
 
@@ -43,8 +44,9 @@ module.exports = {
 
 - Install dependencies
 
-```
 cd <project_name>/server
+
+```
 npm install
 ```
 
