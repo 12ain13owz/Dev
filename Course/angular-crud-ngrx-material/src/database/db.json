@@ -1,0 +1,24 @@
+{
+  "associate": [
+    {
+      "id": 1,
+      "name": "1",
+      "email": "1@1",
+      "phone": "1",
+      "address": "1",
+      "type": "CUSTOMER",
+      "group": "level1",
+      "status": true
+    },
+    {
+      "id": 2,
+      "name": "2",
+      "email": "2@2",
+      "phone": "2",
+      "address": "2",
+      "type": "CUSTOMER",
+      "group": "level1",
+      "status": true
+    }
+  ]
+}
