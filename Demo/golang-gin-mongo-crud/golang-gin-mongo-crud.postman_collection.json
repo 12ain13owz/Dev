@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "0b0b83ed-cbcf-4beb-a10c-aa6380690c15",
-		"name": "Gin-CRUD",
+		"name": "golang-gin-mongo-crud",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "4070296"
 	},

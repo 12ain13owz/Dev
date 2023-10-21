@@ -12,7 +12,7 @@ const convertBuffer = async () => {
   for (let i = 0; i < files.length; i++) {
     const filePath = path.join(dirImages, files[i]);
     const fileName = files[i].split(".")[0];
-    const fileUpload = `${path.join(__dirname, "uploads")}/${fileName}.png`;
+    const fileUpload = `${path.join(dirUploads)}/${fileName}.png`;
     const inputBuffer = fs.readFileSync(filePath);
     const outputBuffer = await convert({
       buffer: inputBuffer,

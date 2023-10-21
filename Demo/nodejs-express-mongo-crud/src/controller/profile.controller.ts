@@ -3,7 +3,6 @@ import { Request, Response } from "express";
 import * as profile from "../service/profile.service";
 import log from "../utils/logger";
 import { CreateProfileInput, FindProfileById } from "../schema/profile.schema";
-import mongoose from "mongoose";
 
 export async function findProfileHandler(req: Request, res: Response) {
   try {

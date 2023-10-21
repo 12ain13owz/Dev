@@ -1,4 +1,3 @@
-import { ObjectId } from "mongoose";
 import ProfileModel, { Profile } from "../model/profile.model";
 
 export function findProfile() {
