@@ -8,7 +8,6 @@ import {
 import { DataStorageService } from '../shared/data-storage.service';
 import { AuthService } from '../auth/auth.service';
 import { Subscription } from 'rxjs';
-import { ActivatedRoute, Router, Routes } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -22,15 +21,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   constructor(
     private dataStorageService: DataStorageService,
-    private authService: AuthService,
-    private router: Router,
-    private route: ActivatedRoute
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
     this.subscription = this.authService.user.subscribe((user) => {
       // this.isAuthenticated = !user ? false : true;
       this.isAuthenticated = !!user;
+
       // console.log(!user);
       // console.log(!!user);
     });
@@ -56,6 +54,4 @@ export class HeaderComponent implements OnInit, OnDestroy {
     // console.log(this.route, 1);
     // this.router.navigate(['./auth'], { relativeTo: this.route });
   }
-
-  test() {}
 }
