@@ -7,7 +7,7 @@ npm install
 ```
 
 - create .env file
-- generate new keys ==Key Size: 2048 bit==: https://travistidwell.com/jsencrypt/demo/
+- generate new keys (**Key Size: 2048 bit**): https://travistidwell.com/jsencrypt/demo/
 
 ```
 ACCESS_TOKEN_PRIVATE_KEY="[Private Key]"
