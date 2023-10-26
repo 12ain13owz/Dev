@@ -9,7 +9,7 @@ export class Session {
   valid: boolean;
 }
 
-export const SessionMode = getModelForClass(Session, {
+export const SessionModel = getModelForClass(Session, {
   schemaOptions: {
     timestamps: true,
   },

@@ -12,7 +12,7 @@ import {
   findUserById,
 } from "../services/user.service";
 import { sendEmail } from "../utils/mailer";
-import { ErrorResponse } from "../models/error.mode";
+import { ErrorResponse } from "../models/error.model";
 import { nanoid } from "nanoid";
 
 export async function createUserHandler(
@@ -135,6 +135,19 @@ export async function resetPasswordHandler(
   } catch (error) {
     const e = error as ErrorResponse;
     log.error(`resetPasswordHandler: ${e.message}`);
+
+    if (e.status) return res.status(e.status).send(e.message);
+    res.status(500).send(e.message);
+  }
+}
+
+export async function getCurrentUserHandler(req: Request, res: Response) {
+  try {
+    console.log(res.locals);
+    res.send(res.locals.user);
+  } catch (error) {
+    const e = error as ErrorResponse;
+    log.error(`getCurrentUser: ${e.message}`);
 
     if (e.status) return res.status(e.status).send(e.message);
     res.status(500).send(e.message);

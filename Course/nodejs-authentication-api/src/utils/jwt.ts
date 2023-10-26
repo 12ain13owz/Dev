@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import config from "config";
-import { ErrorResponse } from "../models/error.mode";
+import { ErrorResponse } from "../models/error.model";
 import log from "./logger";
 
 export function signJwt(
@@ -10,6 +10,7 @@ export function signJwt(
 ) {
   try {
     const signingKey = config.get<string>(keyName);
+
     return jwt.sign(object, signingKey, {
       algorithm: "RS256",
       ...(options && options),
@@ -24,7 +25,7 @@ export function signJwt(
 
 export function verifyJwt<T>(
   token: string,
-  keyName: "accessTokenPrivateKey" | "refreshTokenPrivateKey"
+  keyName: "accessTokenPublicKey" | "refreshTokenPublicKey"
 ) {
   try {
     const publicKey = config.get<string>(keyName);

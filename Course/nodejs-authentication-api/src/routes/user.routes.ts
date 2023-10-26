@@ -9,9 +9,11 @@ import {
 import {
   createUserHandler,
   forgotPasswordHandler,
+  getCurrentUserHandler,
   resetPasswordHandler,
   verifyUserHandler,
 } from "../controllers/user.controller";
+import { requireUser } from "../middleware/requireUser";
 const router = Router();
 
 router.post("/api/users", validate(createUserSchema), createUserHandler);
@@ -32,5 +34,7 @@ router.post(
   validate(resetPasswordSchema),
   resetPasswordHandler
 );
+
+router.get("/api/users/me", requireUser, getCurrentUserHandler);
 
 export default router;
