@@ -22,12 +22,11 @@ const convertBuffer = async () => {
       });
 
       fs.writeFileSync(fileUpload, outputBuffer);
-      bar.tick();
       if (bar.complete) console.log("complete");
     } catch (error) {
       fs.writeFileSync(fileUpload, inputBuffer);
-      bar.tick();
     }
+    bar.tick();
   }
 };
 
