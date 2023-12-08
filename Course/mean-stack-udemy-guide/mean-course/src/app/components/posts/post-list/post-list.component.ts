@@ -22,10 +22,16 @@ export class PostListComponent {
     this.postService.getPosts();
     this.subscription = this.postService
       .getPostUpdateListener()
-      .subscribe((posts: Post[]) => (this.posts = posts));
+      .subscribe((posts: Post[]) => {
+        this.posts = posts;
+      });
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+  }
+
+  onDelete(id: string): void {
+    this.postService.deletePost(id);
   }
 }
