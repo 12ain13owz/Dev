@@ -1,26 +1,77 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { CoreModule } from '../../../core/core.module';
-import { Post } from '../../post.model';
+import { ActivatedRoute, ParamMap, Route } from '@angular/router';
 import { PostService } from '../../post.service';
-import { PostModule } from '../../post.module';
+import { Post } from '../../post.model';
 
 @Component({
   selector: 'app-post-create',
-  standalone: true,
-  imports: [CoreModule, PostModule],
   templateUrl: './post-create.component.html',
   styleUrl: './post-create.component.scss',
 })
 export class PostCreateComponent {
-  constructor(private postService: PostService) {}
+  private mode = mode.create;
+  private postId: string;
 
-  onAddPost(form: NgForm) {
-    if (form.invalid) return;
+  post: Post = {
+    title: '',
+    content: '',
+  };
+  isLoading: boolean = false;
 
-    this.postService.addPost(form.value);
-    form.resetForm();
+  constructor(private postService: PostService, public route: ActivatedRoute) {}
+
+  ngOnInit(): void {
+    this.route.paramMap.subscribe((paramMap: ParamMap) => {
+      if (paramMap.has('postId')) {
+        this.isLoading = true;
+        this.mode = mode.edit;
+        this.postId = paramMap.get('postId');
+        this.postService.getPost(this.postId).subscribe((postData) => {
+          this.post = {
+            id: postData._id,
+            title: postData.title,
+            content: postData.content,
+          };
+          setTimeout(() => {
+            this.isLoading = false;
+          }, 500);
+        });
+      } else {
+        this.mode = mode.create;
+        this.postId = null;
+      }
+    });
   }
+
+  onSavePost(form: NgForm) {
+    if (form.invalid) return;
+    this.isLoading = true;
+
+    const post: Post = {
+      id: this.postId,
+      title: form.value.title,
+      content: form.value.content,
+    };
+
+    if (this.mode === mode.create) {
+      this.postService.addPost(post);
+      form.resetForm();
+    }
+
+    if (this.mode === mode.edit) {
+      this.postService.updatePost(post);
+    }
+
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 500);
+  }
+}
+
+enum mode {
+  create,
+  edit,
 }
 
 // newPost: string = 'No content';

@@ -1,3 +1,4 @@
+@if (isLoading) {<mat-spinner></mat-spinner>} @else {
 <mat-accordion multi="true">
   @for (post of posts; track post) {
   <mat-expansion-panel>
@@ -7,7 +8,9 @@
     <p>{{ post.content }}</p>
 
     <mat-action-row>
-      <button mat-button color="primary">Edit</button>
+      <button mat-button color="primary" [routerLink]="['/edit', post.id]">
+        Edit
+      </button>
       <button mat-button color="warn" (click)="onDelete(post.id)">
         Delete
       </button>
@@ -17,3 +20,4 @@
   <p>Empty list of posts</p>
   }
 </mat-accordion>
+}
