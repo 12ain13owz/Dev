@@ -43,3 +43,4 @@ Thumbs.db
 
 # env
 /server/.env
+/server/images
