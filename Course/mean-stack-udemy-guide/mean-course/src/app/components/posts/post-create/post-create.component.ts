@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { ActivatedRoute, ParamMap, Route } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { PostService } from '../../post.service';
 import { Post } from '../../post.model';
+import { mimeType } from './mime-type.validator';
 
 @Component({
   selector: 'app-post-create',
@@ -18,8 +19,23 @@ export class PostCreateComponent {
     content: '',
   };
   isLoading: boolean = false;
+  form: FormGroup<Form>;
+  imagePreview: string | ArrayBuffer;
 
-  constructor(private postService: PostService, public route: ActivatedRoute) {}
+  constructor(private postService: PostService, public route: ActivatedRoute) {
+    this.form = new FormGroup({
+      title: new FormControl(null, {
+        validators: [Validators.required, Validators.minLength(3)],
+      }),
+      content: new FormControl(null, {
+        validators: [Validators.required],
+      }),
+      image: new FormControl(null, {
+        validators: [Validators.required],
+        asyncValidators: [mimeType],
+      }),
+    });
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
@@ -32,10 +48,15 @@ export class PostCreateComponent {
             id: postData._id,
             title: postData.title,
             content: postData.content,
+            imagePath: postData.imagePath,
           };
-          setTimeout(() => {
-            this.isLoading = false;
-          }, 500);
+          this.form.setValue({
+            title: this.post.title,
+            content: this.post.content,
+            image: this.post.imagePath,
+          });
+
+          setTimeout(() => (this.isLoading = false), 500);
         });
       } else {
         this.mode = mode.create;
@@ -44,34 +65,62 @@ export class PostCreateComponent {
     });
   }
 
-  onSavePost(form: NgForm) {
-    if (form.invalid) return;
+  onSavePost() {
+    if (this.form.invalid) return;
     this.isLoading = true;
 
     const post: Post = {
       id: this.postId,
-      title: form.value.title,
-      content: form.value.content,
+      title: this.form.value.title,
+      content: this.form.value.content,
     };
 
-    if (this.mode === mode.create) {
-      this.postService.addPost(post);
-      form.resetForm();
-    }
+    if (this.mode === mode.create)
+      this.postService.addPost(post, this.form.value.image);
+    if (this.mode === mode.edit)
+      this.postService.updatePost(post, this.form.value.image);
 
-    if (this.mode === mode.edit) {
-      this.postService.updatePost(post);
-    }
+    this.form.reset();
+    setTimeout(() => (this.isLoading = false), 500);
+  }
 
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 500);
+  onImagePicked(e: Event) {
+    const event = <HTMLInputElement>e.target;
+    const file = event.files[0];
+
+    this.form.patchValue({ image: file });
+    this.form.get('image').updateValueAndValidity();
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreview = reader.result;
+    };
+
+    reader.readAsDataURL(file);
+  }
+
+  get title() {
+    return this.form.controls['title'];
+  }
+
+  get content() {
+    return this.form.controls['content'];
+  }
+
+  get image() {
+    return this.form.controls['image'];
   }
 }
 
 enum mode {
   create,
   edit,
+}
+
+interface Form {
+  title: FormControl<string>;
+  content: FormControl<string>;
+  image: FormControl<File | string>;
 }
 
 // newPost: string = 'No content';
