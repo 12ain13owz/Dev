@@ -61,13 +61,29 @@ router.post(
   }
 );
 
-router.get("", (req, res, next) => {
-  Post.find().then((documents) => {
-    res.status(200).json({
-      message: "Posts fetched succesfully!",
-      posts: documents,
+router.get("", async (req, res, next) => {
+  const pageSize = +req.query.pageSize;
+  const currentPage = +req.query.page;
+  const postQuery = Post.find();
+  let fetchedPosts;
+
+  if (pageSize && currentPage) {
+    postQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
+  }
+
+  postQuery
+    .then(async (documents) => {
+      fetchedPosts = documents;
+      return await Post.countDocuments();
+    })
+    .then((count) => {
+      console.log(fetchedPosts);
+      res.status(200).json({
+        message: "Posts fetched succesfully!",
+        posts: fetchedPosts,
+        maxPost: count,
+      });
     });
-  });
 });
 
 router.get("/:id", (req, res, next) => {
