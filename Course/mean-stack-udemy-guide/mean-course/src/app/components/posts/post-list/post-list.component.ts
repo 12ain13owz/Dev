@@ -30,7 +30,7 @@ export class PostListComponent {
         this.totalPosts = postCount;
         setTimeout(() => {
           this.isLoading = false;
-        }, 200);
+        }, 500);
       });
   }
 
@@ -46,10 +46,12 @@ export class PostListComponent {
   }
 
   onChangePage(pageData: PageEvent) {
-    console.log(this.currentPage);
     this.currentPage = pageData.pageIndex + 1;
     this.postsPerPage = pageData.pageSize;
     this.postService.getPosts(this.postsPerPage, this.currentPage);
-    this.isLoading = true;
+
+    setTimeout(() => {
+      this.isLoading = true;
+    }, 200);
   }
 }

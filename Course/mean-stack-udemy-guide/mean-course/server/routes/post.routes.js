@@ -77,7 +77,6 @@ router.get("", async (req, res, next) => {
       return await Post.countDocuments();
     })
     .then((count) => {
-      console.log(fetchedPosts);
       res.status(200).json({
         message: "Posts fetched succesfully!",
         posts: fetchedPosts,
@@ -120,7 +119,6 @@ router.put(
 
 router.delete("/:id", (req, res, next) => {
   Post.deleteOne({ _id: req.params.id }).then((result) => {
-    console.log(result);
     res.status(200).json({ message: "Post deleted!" });
   });
 });

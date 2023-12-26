@@ -23,13 +23,13 @@
 
   } @empty {
   <p>Empty list of posts</p>
-  } @if (posts.length > 0) {
-  <mat-paginator
-    [length]="totalPosts"
-    [pageSize]="postsPerPage"
-    [pageSizeOptions]="pageSizeOptins"
-    (page)="onChangePage($event)"
-  ></mat-paginator>
   }
 </mat-accordion>
 }
+
+<mat-paginator
+  [length]="totalPosts"
+  [pageSize]="postsPerPage"
+  [pageSizeOptions]="pageSizeOptins"
+  (page)="onChangePage($event)"
+></mat-paginator>
