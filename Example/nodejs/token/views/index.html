@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode@4.0.0/build/cjs/index.min.js"></script>
+  </head>
+  <body style="background: rgba(0, 0, 0, 0.8); color: #fff">
+    <pre id="pre-test"></pre>
+    <pre id="regexString"></pre>
+  </body>
+</html>
+
+<script>
+  const pre = document.querySelector("pre-test");
+  const pre2 = document.querySelector("regexString");
+
+  console.log(pre2);
+
+  let url = "http://localhost/token";
+
+  fetch(url)
+    .then((result) => result.json())
+    .then((data) => {
+      const decoded = jwtDecode(data.token);
+      // pre.textContent = "accessToken: " + data.token;
+      // pre2.textContent = decoded;
+    });
+</script>

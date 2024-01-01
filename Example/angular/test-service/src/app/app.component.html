@@ -1,0 +1,61 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false"
+  >
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a
+        mat-list-item
+        routerLink="form"
+        routerLinkActive="active"
+        class="active"
+        >Form</a
+      >
+      <a mat-list-item routerLink="table" routerLinkActive="is-active">Table</a>
+      <a mat-list-item routerLink="dashboard">Dashboard</a>
+      <a mat-list-item routerLink="tree">Tree</a>
+      <a mat-list-item routerLink="drop">Drag Drop </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+      >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+
+      <span>{{ title }}</span>
+      <div style="display: flex; gap: 10px; margin-left: 20px">
+        <button
+          type="button"
+          mat-raised-button
+          color="accent"
+          (click)="onIncrement()"
+        >
+          Increment
+        </button>
+        <button
+          type="button"
+          mat-raised-button
+          color="warn"
+          (click)="onDecrement()"
+        >
+          Decrement
+        </button>
+      </div>
+    </mat-toolbar>
+
+    <main class="container">
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
