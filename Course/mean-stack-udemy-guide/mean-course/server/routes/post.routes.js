@@ -3,6 +3,7 @@ const multer = require("multer");
 const fs = require("fs");
 
 const Post = require("../models/post.model.js");
+const checkAuth = require("../middleware/check-auth.js");
 const MIME_TYPE_MAP = {
   "image/png": "png",
   "image/jpg": "jpg",
@@ -35,6 +36,7 @@ const storage = multer.diskStorage({
 
 router.post(
   "",
+  checkAuth,
   multer({ storage: storage }).single("image"),
   (req, res, next) => {
     const url = req.protocol + "://" + req.get("host");
@@ -58,6 +60,30 @@ router.post(
       .catch((error) => {
         res.status(500).json({ message: "Error creating post" });
       });
+  }
+);
+
+router.put(
+  "/:id",
+  checkAuth,
+  multer({ storage: storage }).single("image"),
+  (req, res, next) => {
+    let imagePath = req.body.imagePath;
+    if (req.file) {
+      const url = req.protocol + "://" + req.get("host");
+      imagePath = url + "/images/" + req.file.filename;
+    }
+
+    const post = new Post({
+      _id: req.params.id,
+      title: req.body.title,
+      content: req.body.content,
+      imagePath: imagePath,
+    });
+
+    Post.updateOne({ _id: req.params.id }, post).then((result) => {
+      res.status(200).json({ message: "Update successful!", imagePath: null });
+    });
   }
 );
 
@@ -94,30 +120,7 @@ router.get("/:id", (req, res, next) => {
     .catch((err) => res.status(404).json("Not found post"));
 });
 
-router.put(
-  "/:id",
-  multer({ storage: storage }).single("image"),
-  (req, res, next) => {
-    let imagePath = req.body.imagePath;
-    if (req.file) {
-      const url = req.protocol + "://" + req.get("host");
-      imagePath = url + "/images/" + req.file.filename;
-    }
-
-    const post = new Post({
-      _id: req.params.id,
-      title: req.body.title,
-      content: req.body.content,
-      imagePath: imagePath,
-    });
-
-    Post.updateOne({ _id: req.params.id }, post).then((result) => {
-      res.status(200).json({ message: "Update successful!", imagePath: null });
-    });
-  }
-);
-
-router.delete("/:id", (req, res, next) => {
+router.delete("/:id", checkAuth, (req, res, next) => {
   Post.deleteOne({ _id: req.params.id }).then((result) => {
     res.status(200).json({ message: "Post deleted!" });
   });

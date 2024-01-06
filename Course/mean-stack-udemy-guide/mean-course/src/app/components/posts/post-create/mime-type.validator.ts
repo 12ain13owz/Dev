@@ -38,7 +38,6 @@ export const mimeType = (
       if (isValid) observer.next(null);
       else observer.next({ invalidMimeType: true });
 
-      console.log(isValid);
       observer.complete();
     });
 

@@ -18,3 +18,12 @@ main {
 mat-card {
   padding: 16px;
 }
+
+.box {
+  max-width: 800px;
+  margin-inline: auto;
+}
+
+mat-form-field {
+  width: 100%;
+}

@@ -3,6 +3,7 @@ import { Post } from '../../post.model';
 import { PostService } from '../../post.service';
 import { Subscription } from 'rxjs';
 import { PageEvent } from '@angular/material/paginator';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-post-list',
@@ -10,7 +11,7 @@ import { PageEvent } from '@angular/material/paginator';
   styleUrl: './post-list.component.scss',
 })
 export class PostListComponent {
-  private subscription: Subscription;
+  private subscription = new Subscription();
   posts: Post[] = [];
   isLoading: boolean = false;
   totalPosts: number = 0;
@@ -18,20 +19,35 @@ export class PostListComponent {
   currentPage: number = 1;
   pageSizeOptins: number[] = [1, 2, 5, 10];
 
-  constructor(private postService: PostService) {}
+  userIsAuthenticated: boolean = false;
+
+  constructor(
+    private postService: PostService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.isLoading = true;
     this.postService.getPosts(this.postsPerPage, this.currentPage);
-    this.subscription = this.postService
-      .getPostUpdateListener()
-      .subscribe(({ posts, postCount }) => {
-        this.posts = posts;
-        this.totalPosts = postCount;
-        setTimeout(() => {
-          this.isLoading = false;
-        }, 500);
-      });
+    this.subscription.add(
+      this.postService
+        .getPostUpdateListener()
+        .subscribe(({ posts, postCount }) => {
+          this.posts = posts;
+          this.totalPosts = postCount;
+          setTimeout(() => {
+            this.isLoading = false;
+          }, 200);
+        })
+    );
+
+    this.userIsAuthenticated = this.authService.getIsAuth();
+    this.subscription.add(
+      this.authService.getAuthStatusListener().subscribe((isAuthenticated) => {
+        this.userIsAuthenticated = isAuthenticated;
+        console.log(this.userIsAuthenticated);
+      })
+    );
   }
 
   ngOnDestroy(): void {
@@ -46,12 +62,9 @@ export class PostListComponent {
   }
 
   onChangePage(pageData: PageEvent) {
+    this.isLoading = true;
     this.currentPage = pageData.pageIndex + 1;
     this.postsPerPage = pageData.pageSize;
     this.postService.getPosts(this.postsPerPage, this.currentPage);
-
-    setTimeout(() => {
-      this.isLoading = true;
-    }, 200);
   }
 }
