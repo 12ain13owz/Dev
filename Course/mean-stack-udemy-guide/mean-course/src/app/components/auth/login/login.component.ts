@@ -12,15 +12,15 @@ export class LoginComponent {
 
   authService = inject(AuthService);
 
-  ngOnInit(): void {
-    // this.authService.getAuthStatusListener().subscribe((isAuthenticated) => {
-    //   console.log('Header', 3);
-    // });
-  }
+  email: string = 'dryst@gmail.com';
+  password: string = '123456';
+
+  ngOnInit(): void {}
 
   onLogin(form: NgForm) {
     if (form.invalid) return;
 
+    this.isLoading = true;
     this.authService.login(form.value.email, form.value.password);
   }
 }

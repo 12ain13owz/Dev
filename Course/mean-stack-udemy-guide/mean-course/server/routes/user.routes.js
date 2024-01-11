@@ -40,12 +40,12 @@ router.post("/signup", (req, res, next) => {
 router.post("/login", (req, res, next) => {
   User.findOne({ email: req.body.email })
     .then((user) => {
-      if (!user) return res.status(401).json({ message: "Auth failed" });
+      if (!user) return res.status(401).json({ message: "Auth failed 1" });
 
       return bcrypt.compare(req.body.password, user.password);
     })
     .then((result) => {
-      if (!result) return res.status(401).json({ message: "Auth failed" });
+      if (!result) return res.status(401).json({ message: "Auth failed 2" });
 
       const token = jwt.sign(
         { email: result.email, userId: result._id },
@@ -53,10 +53,10 @@ router.post("/login", (req, res, next) => {
         { expiresIn: "1h" }
       );
 
-      res.status(200).json({ token: token });
+      res.status(200).json({ token: token, expiresIn: 3600 });
     })
     .catch((error) => {
-      return res.status(401).json({ message: "Auth failed" });
+      return res.status(401).json({ message: "Auth failed 3" });
     });
 });
 

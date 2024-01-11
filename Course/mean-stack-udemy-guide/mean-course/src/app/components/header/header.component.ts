@@ -17,6 +17,9 @@ export class HeaderComponent {
   userIsAuthenticated: boolean = false;
 
   ngOnInit(): void {
+    this.authService.getIsAuth();
+    this.userIsAuthenticated = true;
+
     this.subscription = this.authService
       .getAuthStatusListener()
       .subscribe((isAuthenticated) => {
@@ -26,5 +29,9 @@ export class HeaderComponent {
 
   ngOnDestroy(): void {
     if (this.subscription) this.subscription.unsubscribe();
+  }
+
+  onLogout() {
+    this.authService.logout();
   }
 }

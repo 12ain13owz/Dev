@@ -10,7 +10,7 @@
         <mat-label>E-Mail</mat-label>
         <input
           matInput
-          ngModel
+          [ngModel]="email"
           type="email"
           name="email"
           #emailInput="ngModel"
@@ -25,7 +25,7 @@
         <mat-label>Password</mat-label>
         <input
           matInput
-          ngModel
+          [ngModel]="password"
           type="password"
           name="password"
           #passwordInput="ngModel"
@@ -39,9 +39,11 @@
         type="submit"
         color="accent"
         style="align-self: self-start"
+        *ngIf="!isLoading"
       >
         Login
       </button>
+      <mat-spinner *ngIf="isLoading"></mat-spinner>
     </form>
     }
   </mat-card>

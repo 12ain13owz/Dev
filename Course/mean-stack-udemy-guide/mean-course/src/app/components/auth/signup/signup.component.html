@@ -39,9 +39,12 @@
         type="submit"
         color="accent"
         style="align-self: self-start"
+        *ngIf="!isLoading"
       >
         Signup
       </button>
+
+      <mat-spinner *ngIf="isLoading"></mat-spinner>
     </form>
     }
   </mat-card>

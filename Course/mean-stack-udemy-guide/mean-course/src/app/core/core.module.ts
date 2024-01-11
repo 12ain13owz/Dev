@@ -9,11 +9,13 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   exports: [
     CommonModule,
     ReactiveFormsModule,
+    HttpClientModule,
     MatInputModule,
     MatCardModule,
     MatButtonModule,

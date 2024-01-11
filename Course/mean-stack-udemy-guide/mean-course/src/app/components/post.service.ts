@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Post } from './post.model';
-import { Subject, map, retry, timeout } from 'rxjs';
+import { Subject, map, timeout } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
