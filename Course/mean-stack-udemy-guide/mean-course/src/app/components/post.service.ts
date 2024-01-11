@@ -27,6 +27,7 @@ export class PostService {
                 title: post.title,
                 content: post.content,
                 imagePath: post.imagePath,
+                creator: post.creator,
               };
             }),
             maxPosts: postData.maxPost,
@@ -79,6 +80,7 @@ export class PostService {
         title: post.title,
         content: post.content,
         imagePath: image,
+        creator: null,
       };
     }
 
