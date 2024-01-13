@@ -12,7 +12,7 @@
 
       <p>{{ post.content }}</p>
 
-      @if (userIsAuthenticated && userId === post.creator) {
+      @if (userIsAuthenticated) {
       <mat-action-row>
         <button mat-button color="primary" [routerLink]="['/edit', post.id]">
           Edit
