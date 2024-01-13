@@ -10,9 +10,15 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { FormsModule } from '@angular/forms';
 import { AuthInterceptorProviders } from './auth/auth.interceptor';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { AuthService } from './auth/auth.service';
 =======
 >>>>>>> parent of 79694a1 (Update course mean stack)
+=======
+import { ErrorInterceptorProviders } from '../core/error.interceptor';
+import { AuthService } from './auth/auth.service';
+import { ErrorComponent } from './error/error.component';
+>>>>>>> parent of 28fb870 (Update course mean stack)
 
 @NgModule({
   declarations: [
@@ -20,6 +26,7 @@ import { AuthService } from './auth/auth.service';
     PostListComponent,
     LoginComponent,
     SignupComponent,
+    ErrorComponent,
   ],
   imports: [CoreModule, RouterModule, PostRoutingModule, FormsModule],
   providers: [PostService, AuthInterceptorProviders],

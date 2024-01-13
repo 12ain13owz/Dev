@@ -10,12 +10,31 @@ import { AuthService } from '../auth.service';
 export class LoginComponent {
   isLoading: boolean = false;
 
+<<<<<<< HEAD
   authService = inject(AuthService);
 
   email: string = 'dryst@gmail.com';
   password: string = '123456';
 
   ngOnInit(): void {}
+=======
+  email: string = 'dryst@gmail.com';
+  password: string = '123456';
+
+  authService = inject(AuthService);
+
+  ngOnInit(): void {
+    this.subscription = this.authService
+      .getAuthStatusListener()
+      .subscribe((authStatus) => {
+        this.isLoading = false;
+      });
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) this.subscription.unsubscribe();
+  }
+>>>>>>> parent of 28fb870 (Update course mean stack)
 
   onLogin(form: NgForm) {
     if (form.invalid) return;

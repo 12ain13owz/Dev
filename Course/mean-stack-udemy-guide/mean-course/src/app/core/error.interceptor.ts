@@ -5,12 +5,11 @@ import {
   HttpInterceptor,
   HttpRequest,
 } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { catchError, throwError } from 'rxjs';
 import { ErrorComponent } from '../components/error/error.component';
 
-@Injectable({ providedIn: 'root' })
 export class ErrorInterceptor implements HttpInterceptor {
   private dialog = inject(MatDialog);
 

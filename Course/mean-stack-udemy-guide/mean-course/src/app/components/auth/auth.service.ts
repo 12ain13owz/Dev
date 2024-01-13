@@ -4,7 +4,7 @@ import { AuthData } from './auth.model';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class AuthService {
   private token: string;
   private tokenTimer: ReturnType<typeof setTimeout>;
