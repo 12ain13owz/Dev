@@ -25,9 +25,5 @@ import { HttpClientModule } from '@angular/common/http';
     MatProgressSpinnerModule,
     MatPaginatorModule,
   ],
-<<<<<<< HEAD
-  // providers: [ErrorInterceptorProviders],
-=======
->>>>>>> parent of 79694a1 (Update course mean stack)
 })
 export class CoreModule {}
