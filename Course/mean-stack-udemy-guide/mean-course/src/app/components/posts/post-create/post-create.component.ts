@@ -4,6 +4,8 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { PostService } from '../../post.service';
 import { Post } from '../../post.model';
 import { mimeType } from './mime-type.validator';
+import { Subscription } from 'rxjs';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-post-create',
@@ -11,6 +13,7 @@ import { mimeType } from './mime-type.validator';
   styleUrl: './post-create.component.scss',
 })
 export class PostCreateComponent {
+  private subscription: Subscription;
   private mode = mode.create;
   private postId: string;
 
@@ -22,7 +25,11 @@ export class PostCreateComponent {
   form: FormGroup<Form>;
   imagePreview: string | ArrayBuffer;
 
-  constructor(private postService: PostService, public route: ActivatedRoute) {
+  constructor(
+    private postService: PostService,
+    private authService: AuthService,
+    private route: ActivatedRoute
+  ) {
     this.form = new FormGroup({
       title: new FormControl(null, {
         validators: [Validators.required, Validators.minLength(3)],
@@ -38,6 +45,12 @@ export class PostCreateComponent {
   }
 
   ngOnInit(): void {
+    this.subscription = this.authService
+      .getAuthStatusListener()
+      .subscribe((authStatus) => {
+        this.isLoading = false;
+      });
+
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has('postId')) {
         this.isLoading = true;
@@ -66,6 +79,10 @@ export class PostCreateComponent {
     });
   }
 
+  ngOnDestroy(): void {
+    if (this.subscription) this.subscription.unsubscribe();
+  }
+
   onSavePost() {
     if (this.form.invalid) return;
     this.isLoading = true;
@@ -88,6 +105,7 @@ export class PostCreateComponent {
   onImagePicked(e: Event) {
     const event = <HTMLInputElement>e.target;
     const file = event.files[0];
+    if (!file) return;
 
     this.form.patchValue({ image: file });
     this.form.get('image').updateValueAndValidity();
@@ -96,7 +114,6 @@ export class PostCreateComponent {
     reader.onload = () => {
       this.imagePreview = reader.result;
     };
-
     reader.readAsDataURL(file);
   }
 

@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -8,14 +9,25 @@ import { AuthService } from '../auth.service';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
+  private subscription: Subscription;
   isLoading: boolean = false;
-
-  authService = inject(AuthService);
 
   email: string = 'dryst@gmail.com';
   password: string = '123456';
 
-  ngOnInit(): void {}
+  authService = inject(AuthService);
+
+  ngOnInit(): void {
+    this.subscription = this.authService
+      .getAuthStatusListener()
+      .subscribe((authStatus) => {
+        this.isLoading = false;
+      });
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) this.subscription.unsubscribe();
+  }
 
   onLogin(form: NgForm) {
     if (form.invalid) return;

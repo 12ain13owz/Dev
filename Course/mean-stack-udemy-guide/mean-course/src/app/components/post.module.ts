@@ -9,6 +9,9 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { FormsModule } from '@angular/forms';
 import { AuthInterceptorProviders } from './auth/auth.interceptor';
+import { ErrorInterceptorProviders } from '../core/error.interceptor';
+import { AuthService } from './auth/auth.service';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
@@ -16,8 +19,13 @@ import { AuthInterceptorProviders } from './auth/auth.interceptor';
     PostListComponent,
     LoginComponent,
     SignupComponent,
+    ErrorComponent,
   ],
   imports: [CoreModule, RouterModule, PostRoutingModule, FormsModule],
-  providers: [PostService, AuthInterceptorProviders],
+  providers: [
+    AuthService, // ถ้าไม่ใส่ interceptor จะไม่ทำงาน
+    PostService,
+    AuthInterceptorProviders,
+  ],
 })
 export class PostModule {}
