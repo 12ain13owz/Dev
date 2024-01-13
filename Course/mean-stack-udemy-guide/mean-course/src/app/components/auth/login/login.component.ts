@@ -11,6 +11,7 @@ export class LoginComponent {
   isLoading: boolean = false;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   authService = inject(AuthService);
 
   email: string = 'dryst@gmail.com';
@@ -21,6 +22,11 @@ export class LoginComponent {
   email: string = 'dryst@gmail.com';
   password: string = '123456';
 
+=======
+  email: string = 'dryst@gmail.com';
+  password: string = '123456';
+
+>>>>>>> parent of 28fb870 (Update course mean stack)
   authService = inject(AuthService);
 
   ngOnInit(): void {

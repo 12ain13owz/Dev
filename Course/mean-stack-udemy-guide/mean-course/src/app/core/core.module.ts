@@ -26,6 +26,10 @@ import { HttpClientModule } from '@angular/common/http';
     MatPaginatorModule,
   ],
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+  providers: [ErrorInterceptorProviders],
+>>>>>>> parent of 28fb870 (Update course mean stack)
 =======
   providers: [ErrorInterceptorProviders],
 >>>>>>> parent of 28fb870 (Update course mean stack)
