@@ -28,6 +28,6 @@ import { ErrorInterceptorProviders } from './error.interceptor';
     MatPaginatorModule,
     MatDialogModule,
   ],
-  providers: [ErrorInterceptorProviders],
+  // providers: [ErrorInterceptorProviders],
 })
 export class CoreModule {}

@@ -12,10 +12,9 @@ export class LoginComponent {
   private subscription: Subscription;
   isLoading: boolean = false;
 
+  authService = inject(AuthService);
   email: string = 'dryst@gmail.com';
   password: string = '123456';
-
-  authService = inject(AuthService);
 
   ngOnInit(): void {
     this.subscription = this.authService

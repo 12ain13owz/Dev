@@ -4,7 +4,7 @@ import { Post } from './post.model';
 import { Subject, map, timeout } from 'rxjs';
 import { Router } from '@angular/router';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class PostService {
   private posts: Post[] = [];
   private postsUpdated = new Subject<{ posts: Post[]; postCount: number }>();

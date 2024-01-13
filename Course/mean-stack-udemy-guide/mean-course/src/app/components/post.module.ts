@@ -9,9 +9,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { FormsModule } from '@angular/forms';
 import { AuthInterceptorProviders } from './auth/auth.interceptor';
-import { ErrorInterceptorProviders } from '../core/error.interceptor';
 import { AuthService } from './auth/auth.service';
-import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +17,6 @@ import { ErrorComponent } from './error/error.component';
     PostListComponent,
     LoginComponent,
     SignupComponent,
-    ErrorComponent,
   ],
   imports: [CoreModule, RouterModule, PostRoutingModule, FormsModule],
   providers: [
