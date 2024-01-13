@@ -35,14 +35,11 @@ export class AuthService {
       email: email,
       password: password,
     };
-    this.http.post('http://localhost:3000/api/user/signup', authData).subscribe(
-      () => {
-        this.router.navigate(['/']);
-      },
-      (error) => {
-        this.authStatusListener.next(false);
-      }
-    );
+    return this.http
+      .post('http://localhost:3000/api/user/signup', authData)
+      .subscribe((response) => {
+        console.log(response);
+      });
   }
 
   login(email: string, password: string) {
@@ -56,30 +53,25 @@ export class AuthService {
         'http://localhost:3000/api/user/login',
         authData
       )
-      .subscribe(
-        (response) => {
-          const token = response.token;
-          this.token = token;
-          if (token) {
-            const expireDuration = response.expiresIn;
-            this.setAuthTimer(expireDuration);
+      .subscribe((response) => {
+        const token = response.token;
+        this.token = token;
+        if (token) {
+          const expireDuration = response.expiresIn;
+          this.setAuthTimer(expireDuration);
 
-            const now = new Date();
-            const expirationDate = new Date(
-              now.getTime() + expireDuration * 1000
-            );
+          const now = new Date();
+          const expirationDate = new Date(
+            now.getTime() + expireDuration * 1000
+          );
 
-            this.userId = response.userId;
-            this.isAuthenticated = true;
-            this.authStatusListener.next(this.isAuthenticated);
-            this.saveAuthData(token, expirationDate, this.userId);
-            this.router.navigate(['/']);
-          }
-        },
-        (error) => {
-          this.authStatusListener.next(false);
+          this.userId = response.userId;
+          this.isAuthenticated = true;
+          this.authStatusListener.next(this.isAuthenticated);
+          this.saveAuthData(token, expirationDate, this.userId);
+          this.router.navigate(['/']);
         }
-      );
+      });
   }
 
   autoLogin() {

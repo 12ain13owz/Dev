@@ -57,14 +57,9 @@ export class PostListComponent {
 
   onDelete(id: string): void {
     this.isLoading = true;
-    this.postService.deletePost(id).subscribe(
-      () => {
-        this.postService.getPosts(this.postsPerPage, this.currentPage);
-      },
-      () => {
-        this.isLoading = false;
-      }
-    );
+    this.postService.deletePost(id).subscribe(() => {
+      this.postService.getPosts(this.postsPerPage, this.currentPage);
+    });
   }
 
   onChangePage(pageData: PageEvent) {

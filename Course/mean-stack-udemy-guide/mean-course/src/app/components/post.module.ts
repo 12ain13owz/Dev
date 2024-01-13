@@ -9,7 +9,10 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { FormsModule } from '@angular/forms';
 import { AuthInterceptorProviders } from './auth/auth.interceptor';
+<<<<<<< HEAD
 import { AuthService } from './auth/auth.service';
+=======
+>>>>>>> parent of 79694a1 (Update course mean stack)
 
 @NgModule({
   declarations: [
@@ -19,10 +22,6 @@ import { AuthService } from './auth/auth.service';
     SignupComponent,
   ],
   imports: [CoreModule, RouterModule, PostRoutingModule, FormsModule],
-  providers: [
-    AuthService, // ถ้าไม่ใส่ interceptor จะไม่ทำงาน
-    PostService,
-    AuthInterceptorProviders,
-  ],
+  providers: [PostService, AuthInterceptorProviders],
 })
 export class PostModule {}

@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Post } from './post.model';
 import { Subject, map, timeout } from 'rxjs';
+import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
@@ -64,7 +64,7 @@ export class PostService {
         postData
       )
       .subscribe((responseData) => {
-        // this.router.navigate(['/']);
+        this.router.navigate(['/']);
       });
   }
 
