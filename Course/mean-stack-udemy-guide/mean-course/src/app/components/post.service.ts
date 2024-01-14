@@ -4,7 +4,7 @@ import { Subject, map, timeout } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class PostService {
   private posts: Post[] = [];
   private postsUpdated = new Subject<{ posts: Post[]; postCount: number }>();
@@ -27,6 +27,7 @@ export class PostService {
                 title: post.title,
                 content: post.content,
                 imagePath: post.imagePath,
+                creator: post.creator,
               };
             }),
             maxPosts: postData.maxPost,
@@ -76,9 +77,11 @@ export class PostService {
       postData.append('image', image, post.title);
     } else {
       postData = {
+        id: post.id,
         title: post.title,
         content: post.content,
         imagePath: image,
+        creator: null,
       };
     }
 

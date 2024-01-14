@@ -10,6 +10,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { HttpClientModule } from '@angular/common/http';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   exports: [
@@ -24,14 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatToolbarModule,
     MatProgressSpinnerModule,
     MatPaginatorModule,
+    MatDialogModule,
   ],
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-  providers: [ErrorInterceptorProviders],
->>>>>>> parent of 28fb870 (Update course mean stack)
-=======
-  providers: [ErrorInterceptorProviders],
->>>>>>> parent of 28fb870 (Update course mean stack)
 })
 export class CoreModule {}

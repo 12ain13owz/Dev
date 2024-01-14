@@ -18,7 +18,7 @@ export class HeaderComponent {
 
   ngOnInit(): void {
     this.authService.getIsAuth();
-    this.userIsAuthenticated = true;
+    this.userIsAuthenticated = this.authService.getIsAuth();
 
     this.subscription = this.authService
       .getAuthStatusListener()
