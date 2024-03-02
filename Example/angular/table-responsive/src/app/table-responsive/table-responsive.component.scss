@@ -1,0 +1,41 @@
+.full-width-table {
+  width: 100%;
+}
+
+@media (max-width: 968px) {
+  mat-table {
+    border: 0;
+    vertical-align: middle;
+
+    mat-row {
+      display: block;
+      border-bottom: 10px solid #ddd;
+    }
+
+    mat-cell {
+      border-bottom: 1px solid #ddd;
+      display: block;
+      font-size: 1em;
+      text-align: right;
+      font-weight: bold;
+      height: 30px;
+      margin-bottom: 4%;
+    }
+
+    mat-cell:before {
+      content: attr(data-label);
+      float: left;
+      text-transform: uppercase;
+      font-weight: normal;
+      font-size: 0.85em;
+    }
+
+    mat-cell:last-child {
+      border-bottom: 0;
+    }
+
+    mat-cell:first-child {
+      margin-top: 4%;
+    }
+  }
+}
