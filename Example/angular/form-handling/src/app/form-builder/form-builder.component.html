@@ -1,0 +1,187 @@
+<mat-card class="mat-elevation-z8">
+  <mat-card-header>
+    <mat-card-title>Form Builder</mat-card-title>
+    <mat-card-subtitle>Profile Form</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-divider></mat-divider>
+  <form
+    class="form-container"
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+    #formDirective="ngForm"
+  >
+    <mat-card-content>
+      <app-avatar (fileChange)="onSelectImage($event)"></app-avatar>
+
+      <mat-form-field>
+        <mat-label>E-mail</mat-label>
+        <input type="email" matInput formControlName="email" />
+
+        <mat-error>
+          <app-error-field
+            [control]="email"
+            [errorMessage]="validationField.email"
+          ></app-error-field>
+        </mat-error>
+      </mat-form-field>
+
+      <ng-container formGroupName="fullName">
+        <div class="d-flex gap-10">
+          <mat-form-field>
+            <mat-label>First Name</mat-label>
+            <input type="text" matInput formControlName="firstName" />
+
+            <mat-error>
+              <app-error-field
+                [control]="firstName"
+                [errorMessage]="validationField.firstName"
+              ></app-error-field>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Last Name</mat-label>
+            <input type="text" matInput formControlName="lastName" />
+
+            <mat-error>
+              <app-error-field
+                [control]="lastName"
+                [errorMessage]="validationField.lastName"
+              ></app-error-field>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </ng-container>
+
+      <div class="d-grid grid-columns-2 gap-10">
+        <mat-form-field>
+          <mat-label>Phone</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="phone"
+            mask="000-000-0000"
+          />
+
+          <mat-error>
+            <app-error-field
+              [control]="phone"
+              [errorMessage]="validationField.phone"
+            ></app-error-field>
+          </mat-error>
+        </mat-form-field>
+
+        <div class="mt-7">
+          <mat-card-subtitle>Gender</mat-card-subtitle>
+          <mat-chip-listbox formControlName="gender">
+            <mat-chip-option value="men">Men</mat-chip-option>
+            <mat-chip-option value="women">Women</mat-chip-option>
+          </mat-chip-listbox>
+
+          <mat-error>
+            <app-error-field
+              [control]="gender"
+              [errorMessage]="validationField.gender"
+            ></app-error-field>
+          </mat-error>
+        </div>
+      </div>
+
+      <ng-container formGroupName="address">
+        <mat-form-field>
+          <mat-label>Address Line 1</mat-label>
+          <input type="text" matInput formControlName="addressLine1" />
+
+          <mat-error>
+            <app-error-field
+              [control]="addressLine1"
+              [errorMessage]="validationField.addressLine1"
+            ></app-error-field>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Address Line 2</mat-label>
+          <input type="text" matInput formControlName="addressLine2" />
+        </mat-form-field>
+
+        <div class="d-flex gap-10">
+          <mat-form-field>
+            <mat-label>Sub District</mat-label>
+            <input type="text" matInput formControlName="subDistrict" />
+
+            <mat-error>
+              <app-error-field
+                [control]="subDistrict"
+                [errorMessage]="validationField.subDistrict"
+              ></app-error-field>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>District</mat-label>
+            <input type="text" matInput formControlName="district" />
+
+            <mat-error>
+              <app-error-field
+                [control]="district"
+                [errorMessage]="validationField.district"
+              ></app-error-field>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="d-flex gap-10">
+          <mat-form-field>
+            <mat-label>Province</mat-label>
+            <input type="text" matInput formControlName="province" />
+
+            <mat-error>
+              <app-error-field
+                [control]="province"
+                [errorMessage]="validationField.province"
+              ></app-error-field>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Protal Code</mat-label>
+            <input type="text" matInput formControlName="protalCode" />
+
+            <mat-error>
+              <app-error-field
+                [control]="protalCode"
+                [errorMessage]="validationField.protalCode"
+              ></app-error-field>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </ng-container>
+
+      <div>
+        <mat-card-subtitle>Test</mat-card-subtitle>
+        <mat-chip-listbox formControlName="test">
+          @for (data of tests; track $index) {
+          <mat-chip-option [value]="data">{{ data.value }}</mat-chip-option>
+          }
+        </mat-chip-listbox>
+
+        <mat-error>
+          <app-error-field
+            [control]="test"
+            [errorMessage]="validationField.test"
+          ></app-error-field>
+        </mat-error>
+      </div>
+    </mat-card-content>
+
+    <mat-divider></mat-divider>
+    <mat-card-actions>
+      <button type="submit" mat-button>Submit</button>
+      <button type="button" mat-button color="warn" (click)="onReset()">
+        Reset
+      </button>
+    </mat-card-actions>
+  </form>
+</mat-card>

@@ -1,0 +1,70 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("./app/core/theme.scss");
+
+html,
+body {
+  height: 100%;
+}
+
+html {
+  background-color: #f1f4f7;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.dark-theme {
+  background-color: #303030 !important;
+
+  mat-card-title {
+    color: #fff;
+  }
+}
+
+.d-flex {
+  display: flex;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.d-grid {
+  display: grid;
+}
+
+.grid-columns-2 {
+  grid-template-columns: 1fr 1fr;
+}
+
+.gap-10 {
+  gap: 10px;
+}
+
+.mt-7 {
+  margin-top: -7px;
+}
+
+.mb-8 {
+  margin-bottom: 8px;
+}
+
+.mb-16 {
+  margin-bottom: 16px;
+}
+
+.form-container {
+  mat-form-field {
+    width: 100%;
+  }
+}

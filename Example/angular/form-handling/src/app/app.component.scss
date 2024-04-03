@@ -1,0 +1,28 @@
+li {
+  list-style: none;
+
+  a {
+    padding: 20px 10px;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+
+  a:hover {
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  .active {
+    color: chartreuse;
+    background: rgba(0, 0, 0, 0.3);
+  }
+}
+
+.box {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.mb-16 {
+  margin-bottom: 16px;
+}
