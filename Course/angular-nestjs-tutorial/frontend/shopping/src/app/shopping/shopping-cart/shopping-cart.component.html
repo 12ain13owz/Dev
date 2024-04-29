@@ -1,0 +1,7 @@
+<div class="shopping-cart-container" [ngClass]="{ clickable: value() > 0 }">
+  <i class="pi pi-shopping-cart" style="font-size: 2rem"></i>
+
+  @if (value() > 0) {
+  <div class="nofification">{{ value() }}</div>
+  }
+</div>
