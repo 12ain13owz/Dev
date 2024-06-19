@@ -1,1 +1,0 @@
-pub/sub, polling, Long Polling, Web Sockets, Server Sent Events, Silent Push Notifications เลือกใช้ตามสถานการณ์ได้เลยครับ
