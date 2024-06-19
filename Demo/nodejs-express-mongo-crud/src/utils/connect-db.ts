@@ -7,7 +7,7 @@ export async function connectDatabase() {
   log.info("Connected to MongoDB");
 
   try {
-    await mongoose.connect(url);
+    await mongoose.connect(url, { dbName: "tutarial-crud" });
     log.info("Connected Successfully");
   } catch (error: any) {
     log.error(error.message);

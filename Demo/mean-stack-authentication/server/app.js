@@ -9,7 +9,6 @@ const corsOptions = {
 };
 
 const app = express();
-const password = process.env.DB_PASSWORD;
 const userRouter = require("./routes/user.routes");
 const handlerError = require("./middleware/handler-error.middleware");
 
@@ -21,12 +20,10 @@ app.use("/api/v1", userRouter);
 app.use(handlerError);
 
 mongoose
-  .connect(
-    `mongodb+srv://auth:${password}@cluster0.jycoejc.mongodb.net/auth?retryWrites=true&w=majority`
-  )
+  .connect(`mongodb://user_mongo:pass_mongo@localhost:27017/`)
   .then(() => {
-    app.listen(5000, () => {
-      console.log("Database is connected! Listening to localhost 5000");
+    app.listen(3000, () => {
+      console.log("Database is connected! Listening to localhost 3000");
     });
   })
   .catch((error) => {
