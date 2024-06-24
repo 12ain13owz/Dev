@@ -1,0 +1,22 @@
+<main>
+  @if (!callingService.callId()) {
+  <section class="join-section">
+    <div class="join-call-form">
+      <label for="location-search">Join call</label>
+      <input
+        type="text"
+        id="location-seach"
+        #callId
+        placeholder="Enter call id"
+      />
+    </div>
+    <button (click)="setCallId(callId.value)">Join Call</button>
+  </section>
+  } @if (callingService.call() ) {
+  <section>
+    <app-call [call]="callingService.call()!"></app-call>
+  </section>
+
+  }
+  <router-outlet></router-outlet>
+</main>
