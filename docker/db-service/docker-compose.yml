@@ -1,4 +1,4 @@
-version: "3.1"
+version: "3.8"
 
 services:
   mysql:
@@ -11,7 +11,7 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - mysql_data:/var/lib/mysql
+      - mysql-data:/var/lib/mysql
 
   mongo:
     image: mongo:latest
@@ -22,7 +22,8 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - mongodb_data:/data/db
+      - mongo-data:/data/db
+      - mongo-config:/data/configdb
 
   postgres:
     image: postgres:latest
@@ -33,7 +34,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgressql/data
+      - postgres-data:/var/lib/postgresql/data
 
   redis:
     image: redis:latest
@@ -42,9 +43,11 @@ services:
       - "6379:6379"
 
 volumes:
-  mysql_data:
+  mysql-data:
     driver: local
-  mongodb_data:
+  mongo-data:
     driver: local
-  postgres_data:
+  mongo-config:
+    driver: local
+  postgres-data:
     driver: local
