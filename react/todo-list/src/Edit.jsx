@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-const BASE_URL = "https://6796457bbedc5d43a6c4c20e.mockapi.io/api/v1/todos/";
+const BASE_URL = "https://6796457bbedc5d43a6c4c20e.mockapi.io/api/v1/profiles/";
 
 function Edit() {
   const { id } = useParams();

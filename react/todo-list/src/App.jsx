@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
-const BASE_URL = "https://6796457bbedc5d43a6c4c20e.mockapi.io/api/v1/todos/";
+const BASE_URL = "https://6796457bbedc5d43a6c4c20e.mockapi.io/api/v1/profiles/";
 
 function App() {
   const [todos, setTodos] = useState([]);
