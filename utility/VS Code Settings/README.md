@@ -196,7 +196,7 @@ Settings for Prettier, the code formatter, to enforce consistent styling.
   Adds trailing commas where valid in ES5 (objects, arrays).
   _Extension_: Prettier.
 
-- **`prettier.semi`: true**
+- **`prettier.semi`: false**
   Adds semicolons at the end of statements.
   _Extension_: Prettier.
 
@@ -219,7 +219,7 @@ Settings for Prettier, the code formatter, to enforce consistent styling.
   "prettier.printWidth": 80,
   "prettier.singleQuote": false,
   "prettier.trailingComma": "es5",
-  "prettier.semi": true,
+  "prettier.semi": false,
   "prettier.bracketSpacing": true,
   "prettier.arrowParens": "always",
   "prettier.htmlWhitespaceSensitivity": "strict"
