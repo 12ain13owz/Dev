@@ -1,0 +1,187 @@
+{
+  // --- Editor: General Settings ---
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.cursorBlinking": "smooth",
+  "editor.cursorStyle": "line",
+  "editor.cursorWidth": 2,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+
+  // --- Editor: Appearance ---
+  "editor.fontFamily": "Fira Code",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 16,
+  "editor.fontWeight": "600",
+  "editor.letterSpacing": 0,
+  "editor.lineHeight": 22,
+  "editor.renderWhitespace": "trailing",
+  "editor.occurrencesHighlight": "off",
+  "editor.codeLens": true,
+  "editor.stickyScroll.enabled": false,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": false,
+
+  // --- Editor: Suggestions ---
+  "editor.suggest.snippetsPreventQuickSuggestions": true,
+
+  // --- Linting & Validation ---
+  "eslint.format.enable": true,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "html",
+    "json"
+  ],
+
+  // --- Prettier: Code Formatting ---
+  "prettier.useTabs": false,
+  "prettier.tabWidth": 2,
+  "prettier.printWidth": 80,
+  "prettier.singleQuote": false,
+  "prettier.trailingComma": "es5",
+  "prettier.semi": true,
+  "prettier.bracketSpacing": true,
+  "prettier.arrowParens": "always",
+  "prettier.htmlWhitespaceSensitivity": "strict",
+
+  // --- HTML: Formatting ---
+  "html.format.wrapAttributes": "force-aligned",
+
+  // --- Terminal Settings ---
+  "terminal.integrated.fontFamily": "Hack",
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+
+  // --- File & Explorer Settings ---
+  "explorer.compactFolders": false,
+  "explorer.confirmDragAndDrop": false,
+  "files.trimTrailingWhitespace": true,
+
+  // --- Debugging ---
+  "debug.openDebug": "openOnDebugBreak",
+
+  // --- Git Settings ---
+  "git.ignoreMissingGitWarning": true,
+  "git.openRepositoryInParentFolders": "never",
+  "git.autofetch": true,
+
+  // --- Live Server Settings ---
+  "liveServer.settings.donotShowInfoMsg": true,
+  "liveServer.settings.donotVerifyTags": true,
+
+  // --- Import Settings ---
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+
+  // --- Emmet Settings ---
+  "emmet.showSuggestionsAsSnippets": true,
+
+  // --- Theme & Appearance ---
+  "workbench.colorTheme": "GitHub Dark Default",
+  "workbench.iconTheme": "material-icon-theme",
+  "material-icon-theme.folders.theme": "specific",
+  "material-icon-theme.folders.color": "#90a4ae",
+  "material-icon-theme.activeIconPack": "angular_ngrx",
+  "breadcrumbs.enabled": false,
+  "workbench.colorCustomizations": {
+    "[GitHub Dark Default]": {
+      "gitDecoration.untrackedResourceForeground": "#9ff747",
+      "gitDecoration.modifiedResourceForeground": "#fcff4a",
+      "terminal.ansiYellow": "#fffb13"
+    }
+  },
+
+  // --- Syntax Highlighting ---
+  "editor.tokenColorCustomizations": {
+    "[GitHub Dark Default]": {
+      "textMateRules": [
+        {
+          "scope": "text.html.derivative",
+          "settings": { "foreground": "#f1f1cc" }
+        },
+        {
+          "scope": [
+            "variable.parameter",
+            "punctuation.definition.tag.begin.html",
+            "punctuation.definition.tag.end.html",
+            "support.type.property-name.css",
+            "entity.name.type.module"
+          ],
+          "settings": { "foreground": "#e6edf3" }
+        },
+        {
+          "scope": [
+            "keyword.control.import",
+            "keyword.control.from",
+            "keyword.control.export",
+            "keyword.control.flow",
+            "keyword.control.conditional",
+            "keyword.control.trycatch"
+          ],
+          "settings": { "foreground": "#f75992" }
+        },
+        {
+          "scope": [
+            "support.type.primitive",
+            "support.type.builtin",
+            "support.class"
+          ],
+          "settings": { "foreground": "#ffa657" }
+        },
+        {
+          "scope": ["variable.parameter"],
+          "settings": { "foreground": "#32f0ca" }
+        },
+        {
+          "scope": ["string"],
+          "settings": { "foreground": "#f1fa8c" }
+        },
+        {
+          "scope": ["constant.language.boolean"],
+          "settings": { "foreground": "#fa8cd0" }
+        }
+      ]
+    }
+  },
+  "editor.semanticTokenColorCustomizations": {
+    "[GitHub Dark Default]": {
+      "enabled": false,
+      "rules": {}
+    }
+  },
+
+  // --- Extension Settings ---
+  "hediet.vscode-drawio.resizeImages": null,
+
+  // --- Language Specific Settings ---
+  "[dart]": {
+    "editor.defaultFormatter": "Dart-Code.dart-code",
+    "editor.formatOnType": true,
+    "editor.rulers": [80],
+    "editor.selectionHighlight": false,
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "editor.suggestSelection": "first",
+    "editor.tabCompletion": "off",
+    "editor.wordBasedSuggestions": "off"
+  },
+  "[go]": {
+    "editor.insertSpaces": true,
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "golang.go"
+  },
+
+  // --- Miscellaneous ---
+  "security.workspace.trust.untrustedFiles": "open",
+  "http.proxyAuthorization": null,
+  "turboConsoleLog.insertEnclosingClass": false,
+  "turboConsoleLog.insertEnclosingFunction": false,
+  "turboConsoleLog.logMessagePrefix": "",
+  "turboConsoleLog.delimiterInsideMessage": "",
+  "redhat.telemetry.enabled": true
+}
