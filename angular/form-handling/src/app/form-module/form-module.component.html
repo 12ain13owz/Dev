@@ -1,0 +1,282 @@
+<mat-card class="mat-elevation-z8">
+  <mat-card-header>
+    <mat-card-title>Form Builder</mat-card-title>
+    <mat-card-subtitle>Profile Form</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-divider></mat-divider>
+  <form class="form-container" #profileForm="ngForm" (ngSubmit)="onSubmit()">
+    <mat-card-content>
+      <app-avatar (fileChange)="onSelectImage($event)"></app-avatar>
+
+      <mat-form-field>
+        <mat-label>E-mail</mat-label>
+        <input
+          type="email"
+          matInput
+          name="email"
+          [(ngModel)]="profile.email"
+          required
+          email
+          #emailInput="ngModel"
+        />
+        <mat-error
+          *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)"
+        >
+          <span *ngIf="emailInput.errors?.['required']">Email is required</span>
+          <span *ngIf="emailInput.errors?.['email']"
+            >Please enter a valid email</span
+          >
+        </mat-error>
+      </mat-form-field>
+
+      <div class="d-flex gap-10">
+        <mat-form-field>
+          <mat-label>First Name</mat-label>
+          <input
+            type="text"
+            matInput
+            name="firstName"
+            [(ngModel)]="profile.fullName.firstName"
+            required
+            #firstNameInput="ngModel"
+          />
+          <mat-error
+            *ngIf="
+              firstNameInput.invalid &&
+              (firstNameInput.dirty || firstNameInput.touched)
+            "
+          >
+            <span *ngIf="firstNameInput.errors?.['required']"
+              >First name is required</span
+            >
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Last Name</mat-label>
+          <input
+            type="text"
+            matInput
+            name="lastName"
+            [(ngModel)]="profile.fullName.lastName"
+            required
+            #lastNameInput="ngModel"
+          />
+          <mat-error
+            *ngIf="
+              lastNameInput.invalid &&
+              (lastNameInput.dirty || lastNameInput.touched)
+            "
+          >
+            <span *ngIf="lastNameInput.errors?.['required']"
+              >Last name is required</span
+            >
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="d-grid grid-columns-2 gap-10">
+        <mat-form-field>
+          <mat-label>Phone</mat-label>
+          <input
+            type="text"
+            matInput
+            name="phone"
+            [(ngModel)]="profile.phone"
+            mask="000-000-0000"
+            required
+            #phoneInput="ngModel"
+          />
+          <mat-error
+            *ngIf="
+              phoneInput.invalid && (phoneInput.dirty || phoneInput.touched)
+            "
+          >
+            <span *ngIf="phoneInput.errors?.['required']"
+              >Phone number is required</span
+            >
+          </mat-error>
+        </mat-form-field>
+
+        <div class="mt-7">
+          <mat-card-subtitle>Gender</mat-card-subtitle>
+          <mat-chip-listbox
+            [(ngModel)]="profile.gender"
+            name="gender"
+            required
+            #genderInput="ngModel"
+          >
+            <mat-chip-option value="men">Men</mat-chip-option>
+            <mat-chip-option value="women">Women</mat-chip-option>
+          </mat-chip-listbox>
+          <mat-error
+            *ngIf="
+              genderInput.invalid && (genderInput.dirty || genderInput.touched)
+            "
+          >
+            <span *ngIf="genderInput.errors?.['required']"
+              >Gender is required</span
+            >
+          </mat-error>
+        </div>
+      </div>
+
+      <mat-form-field>
+        <mat-label>Address Line 1</mat-label>
+        <input
+          type="text"
+          matInput
+          name="addressLine1"
+          [(ngModel)]="profile.address.addressLine1"
+          required
+          #addressLine1Input="ngModel"
+        />
+        <mat-error
+          *ngIf="
+            addressLine1Input.invalid &&
+            (addressLine1Input.dirty || addressLine1Input.touched)
+          "
+        >
+          <span *ngIf="addressLine1Input.errors?.['required']"
+            >Address Line 1 is required</span
+          >
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Address Line 2</mat-label>
+        <input
+          type="text"
+          matInput
+          name="addressLine2"
+          [(ngModel)]="profile.address.addressLine2"
+        />
+      </mat-form-field>
+
+      <div class="d-flex gap-10">
+        <mat-form-field>
+          <mat-label>Sub District</mat-label>
+          <input
+            type="text"
+            matInput
+            name="subDistrict"
+            [(ngModel)]="profile.address.subDistrict"
+            required
+            #subDistrictInput="ngModel"
+          />
+          <mat-error
+            *ngIf="
+              subDistrictInput.invalid &&
+              (subDistrictInput.dirty || subDistrictInput.touched)
+            "
+          >
+            <span *ngIf="subDistrictInput.errors?.['required']"
+              >Sub District is required</span
+            >
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>District</mat-label>
+          <input
+            type="text"
+            matInput
+            name="district"
+            [(ngModel)]="profile.address.district"
+            required
+            #districtInput="ngModel"
+          />
+          <mat-error
+            *ngIf="
+              districtInput.invalid &&
+              (districtInput.dirty || districtInput.touched)
+            "
+          >
+            <span *ngIf="districtInput.errors?.['required']"
+              >District is required</span
+            >
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="d-flex gap-10">
+        <mat-form-field>
+          <mat-label>Province</mat-label>
+          <input
+            type="text"
+            matInput
+            name="province"
+            [(ngModel)]="profile.address.province"
+            required
+            #provinceInput="ngModel"
+          />
+          <mat-error
+            *ngIf="
+              provinceInput.invalid &&
+              (provinceInput.dirty || provinceInput.touched)
+            "
+          >
+            <span *ngIf="provinceInput.errors?.['required']"
+              >Province is required</span
+            >
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Postal Code</mat-label>
+          <input
+            type="text"
+            matInput
+            name="postalCode"
+            [(ngModel)]="profile.address.postalCode"
+            required
+            #postalCodeInput="ngModel"
+          />
+          <mat-error
+            *ngIf="
+              postalCodeInput.invalid &&
+              (postalCodeInput.dirty || postalCodeInput.touched)
+            "
+          >
+            <span *ngIf="postalCodeInput.errors?.['required']"
+              >Postal Code is required</span
+            >
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-card-subtitle>Test</mat-card-subtitle>
+        <mat-chip-listbox
+          [(ngModel)]="profile.test"
+          name="test"
+          required
+          #testInput="ngModel"
+        >
+          <mat-chip-option
+            *ngFor="let data of tests; let i = index"
+            [value]="data"
+          >
+            {{ data.value }}
+          </mat-chip-option>
+        </mat-chip-listbox>
+        <mat-error
+          *ngIf="testInput.invalid && (testInput.dirty || testInput.touched)"
+        >
+          <span *ngIf="testInput.errors?.['required']"
+            >Test selection is required</span
+          >
+        </mat-error>
+      </div>
+    </mat-card-content>
+
+    <mat-divider></mat-divider>
+    <mat-card-actions>
+      <button type="submit" mat-button>Submit</button>
+      <button type="button" mat-button color="warn" (click)="onReset()">
+        Reset
+      </button>
+    </mat-card-actions>
+  </form>
+</mat-card>
