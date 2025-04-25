@@ -27,6 +27,7 @@
 
   // --- Editor: Suggestions ---
   "editor.suggest.snippetsPreventQuickSuggestions": true,
+  "editor.snippetSuggestions": "inline",
 
   // --- Linting & Validation ---
   "eslint.format.enable": true,
@@ -80,7 +81,7 @@
   "javascript.updateImportsOnFileMove.enabled": "always",
 
   // --- Emmet Settings ---
-  "emmet.showSuggestionsAsSnippets": true,
+  "emmet.showSuggestionsAsSnippets": false,
 
   // --- Theme & Appearance ---
   "workbench.colorTheme": "GitHub Dark Default",

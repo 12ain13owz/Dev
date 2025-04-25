@@ -136,9 +136,14 @@ Settings for controlling code suggestion behavior.
   Prevents quick suggestions for snippets to reduce suggestion clutter.
   _Extension_: Built-in.
 
+- **`editor.snippetSuggestions`: "inline"**
+  Configures the display of snippet suggestions in the suggestion list. The `"inline"` value shows snippets mixed with other suggestions in alphabetical order.
+  _Extension_: Built-in.
+
 ```json
 {
-  "editor.suggest.snippetsPreventQuickSuggestions": true
+  "editor.suggest.snippetsPreventQuickSuggestions": true,
+  "editor.snippetSuggestions": "inline"
 }
 ```
 
